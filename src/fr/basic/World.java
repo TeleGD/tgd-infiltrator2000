@@ -9,8 +9,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import entity.circle.Item;
-import entity.movable.Circle.Guard;
-import entity.movable.Circle.Player;
+import entity.movable.circle.Guard;
+import entity.movable.circle.Player;
 import entity.movable.Projectile;
 import entity.rectangle.Wall;
 import fr.util.Chrono;
