@@ -27,13 +27,17 @@ public class Menu extends BasicGameState {
 	protected String[] items;
 	
 	public Menu(){
+		//Ne pas utiliser si possible. Utilisez celui d'en dessous.
 		selection = 0;
+		ID = -1;
 		items = new String[1];
+		items[0] = "Menu de base.";
 	}
 	
 	public Menu(int itemCount){
 		selection = 0;
 		items = new String[itemCount];
+		nbrOptions = itemCount;
 	}
 	
 	public String[] getItems() {
@@ -88,10 +92,6 @@ public class Menu extends BasicGameState {
 		case Input.KEY_ENTER:
 			execOption();
 			break;
-
-		case Input.KEY_ESCAPE:
-			this.container.exit();
-			break;
 		default :
 			break;
 		}
@@ -99,15 +99,6 @@ public class Menu extends BasicGameState {
 
 	public void execOption() {
 		switch (selection) {
-		case 0:
-			World.reset();
-			game.enterState(World.ID, new FadeOutTransition(),
-					new FadeInTransition());
-			break;
-
-		case 1:
-			this.container.exit();
-			break;
 		default:
 			break;
 		 
