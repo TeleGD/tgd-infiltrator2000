@@ -19,8 +19,8 @@ public class Player extends Character {
 	protected double speed = 0.25;
 	protected boolean left,right,up,down;
 	
-	public Player(double x, double y, double sx, double sy, double radius, Image im, ArrayList<Capacity> inv, World world) {
-		super(x, y, sx, sy, radius, im,world);
+	public Player(double x, double y, double sx, double sy, double radius,double view, Image im, ArrayList<Capacity> inv, World world) {
+		super(x, y, sx, sy, radius,view, im,world);
 		this.inventaire=inv;
 	}
 
@@ -45,6 +45,10 @@ public class Player extends Character {
 	}
 	
 	public double getOrientation(){
+		if ( left ) return 180;
+		if ( right ) return 0;
+		if ( up ) return 90;
+		if ( down ) return 270;
 		return 0;
 	}
 	
@@ -167,18 +171,30 @@ public class Player extends Character {
 		case Input.KEY_DOWN:
 			this.setSpeedY(speed);
 			down = true;
+			left = false;
+			up = false;
+			right = false;
 			break;
 		case Input.KEY_UP:
 			this.setSpeedY(-speed);
 			up = true;
+			down = false;
+			right = false;
+			left = false;
 			break;
 		case Input.KEY_LEFT:
 			this.setSpeedX(-speed);
 			left = true;
+			right = false;
+			down = false;
+			up =false;
 			break;
 		case Input.KEY_RIGHT:
 			this.setSpeedX(speed);
 			right = true;
+			left = false;
+			up = false;
+			down = false;
 			break;
 		}
 	}

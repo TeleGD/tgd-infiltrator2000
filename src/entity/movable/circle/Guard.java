@@ -14,8 +14,8 @@ import fr.vision.Area;
 public class Guard extends Character {
 	protected Area visualField;
 	
-	public Guard(double x, double y, double sx, double sy, double radius, /*Image im,*/ Area visuFie, World world) {
-		super(x, y, sx, sy,radius, null,world);
+	public Guard(double x, double y, double sx, double sy, double radius, double view, /*Image im,*/ Area visuFie, World world) {
+		super(x, y, sx, sy,radius,view, null,world);
 		//this.visualField=visuFie;
 	}
 
