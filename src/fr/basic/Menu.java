@@ -7,9 +7,9 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Menu extends BasicGameState {
-	int id;
-	GameContainer container;
-	StateBasedGame game;
+	private int id;
+	private GameContainer container;
+	private StateBasedGame game;
 	
 	public Menu(){
 	}
