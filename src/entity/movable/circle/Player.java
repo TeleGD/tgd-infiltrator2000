@@ -17,11 +17,11 @@ public class Player extends Character {
 
 	protected ArrayList<Capacity> inventaire;
 	protected double speed = 0.25;
+	protected boolean left,right,up,down;
 	
-	public Player(double x, double y, double sx, double sy, Image im, ArrayList<Capacity> inv, World world) {
-		super(x, y, sx, sy, im,world);
+	public Player(double x, double y, double sx, double sy, double radius, Image im, ArrayList<Capacity> inv, World world) {
+		super(x, y, sx, sy, radius, im,world);
 		this.inventaire=inv;
-		radius = 20;
 	}
 
 	//--------------------------Get-------------------
@@ -42,6 +42,10 @@ public class Player extends Character {
 		} else {
 			System.out.println("Desole mais la 7eme capacite est pour T7 !");
 		}
+	}
+	
+	public double getOrientation(){
+		return 0;
 	}
 	
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
@@ -162,15 +166,19 @@ public class Player extends Character {
 			break;
 		case Input.KEY_DOWN:
 			this.setSpeedY(speed);
+			down = true;
 			break;
 		case Input.KEY_UP:
 			this.setSpeedY(-speed);
+			up = true;
 			break;
 		case Input.KEY_LEFT:
 			this.setSpeedX(-speed);
+			left = true;
 			break;
 		case Input.KEY_RIGHT:
 			this.setSpeedX(speed);
+			right = true;
 			break;
 		}
 	}
