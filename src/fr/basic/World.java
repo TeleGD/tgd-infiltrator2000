@@ -9,8 +9,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import entity.circle.Item;
-import entity.movable.circle.Guard;
-import entity.movable.circle.Player;
+import entity.movable.Circle.Guard;
+import entity.movable.Circle.Player;
 import entity.movable.Projectile;
 import entity.rectangle.Wall;
 import fr.util.Chrono;
@@ -29,7 +29,8 @@ public class World extends BasicGameState{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		// TODO Auto-generated method stub
-		
+		guards=new ArrayList<Guard>();
+		guards.add(new Guard(100,100,1,1,null));
 	}
 
 	@Override
@@ -54,6 +55,7 @@ public class World extends BasicGameState{
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
+		System.out.println("bite");
 		for(Wall w : walls){
 			w.update(arg0, arg1, arg2);
 		}
