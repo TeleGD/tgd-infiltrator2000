@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import entity.Entity;
 import entity.circle.Item;
 import entity.movable.circle.Guard;
 import entity.movable.circle.Player;
@@ -31,6 +32,12 @@ public class World extends BasicGameState{
 		// TODO Auto-generated method stub
 		guards=new ArrayList<Guard>();
 		guards.add(new Guard(100,100,1,1,null));
+		
+		walls = new ArrayList<Wall>();
+		guards = new ArrayList<Guard>();
+		items = new ArrayList<Item>();
+		projectiles = new ArrayList<Projectile>();
+		
 	}
 
 	@Override
@@ -55,7 +62,6 @@ public class World extends BasicGameState{
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		System.out.println("bite");
 		for(Wall w : walls){
 			w.update(arg0, arg1, arg2);
 		}
@@ -98,6 +104,15 @@ public class World extends BasicGameState{
 	
 	public ArrayList<Item> getItems(){
 		return items;
+	}
+	
+	public ArrayList<Entity> getEntities(){
+		ArrayList<Entity> tmp = new ArrayList<Entity>();
+		tmp.addAll(walls);
+		tmp.addAll(guards);
+		tmp.addAll(items);
+		tmp.addAll(projectiles);
+		return tmp;
 	}
 	
 	public void reset(){
