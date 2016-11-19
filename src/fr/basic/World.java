@@ -8,11 +8,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import entity.item.Item;
-import entity.movable.Guard;
-import entity.movable.Player;
+import entity.circle.Item;
+import entity.movable.circle.Guard;
+import entity.movable.circle.Player;
 import entity.movable.Projectile;
-import entity.wall.Wall;
+import entity.rectangle.Wall;
 import fr.util.Chrono;
 
 public class World extends BasicGameState{
