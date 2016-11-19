@@ -34,7 +34,7 @@ public class Chrono {
 	}
 	
 	public void render(){
-		System.out.println("Temps ecoule = " + chrono + " ms") ;
+		System.out.println(""+(chrono/60000)+":"+(chrono%60000)/1000+":"+chrono%1000) ;
 	}
 	
 	public void update(){
