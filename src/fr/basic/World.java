@@ -34,13 +34,41 @@ public class World extends BasicGameState{
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
-		// TODO Auto-generated method stub
+		for(Wall w : walls){
+			w.render(arg0, arg1, arg2);
+		}
+		
+		for(Guard g : guards){
+			g.render(arg0, arg1, arg2);
+		}
+		
+		for(Item i : items){
+			i.render(arg0, arg1, arg2);
+		}
+		
+		for(Projectile p : projectiles){
+			p.render(arg0, arg1, arg2);
+		}
 		
 	}
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		// TODO Auto-generated method stub
+		for(Wall w : walls){
+			w.update(arg0, arg1, arg2);
+		}
+		
+		for(Guard g : guards){
+			g.update(arg0, arg1, arg2);
+		}
+		
+		for(Item i : items){
+			i.update(arg0, arg1, arg2);
+		}
+		
+		for(Projectile p : projectiles){
+			p.update(arg0, arg1, arg2);
+		}
 		
 	}
 
@@ -51,11 +79,11 @@ public class World extends BasicGameState{
 	}
 	
 	public void keyPressed(int key, char c){
-		
+		player.keyPressed(key,c);
 	}
 	
 	public void keyReleased(int key, char c){
-		
+		player.keyReleased(key,c);
 	}
 	
 	public ArrayList<Wall> getWalls(){
