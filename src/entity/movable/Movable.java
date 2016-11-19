@@ -36,7 +36,13 @@ public abstract class Movable extends Entity {
 		this.speedY = speedY;
 	}
 	
+	public void moveX(int delta){
+		this.x += speedX*delta;
+	}
 	
+	public void moveY(int delta){
+		this.y += speedY*delta;
+	}
 	
 	
 

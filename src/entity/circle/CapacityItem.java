@@ -1,4 +1,4 @@
-package entity.item;
+package entity.circle;
 
 public class CapacityItem extends Item {
 

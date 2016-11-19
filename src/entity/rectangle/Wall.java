@@ -1,10 +1,11 @@
-package entity.wall;
+package entity.rectangle;
 
 import org.newdawn.slick.Image;
 
 import entity.Entity;
+import fr.interfaces.Rectangle;
 
-public class Wall extends Entity implements Rectangle {
+public class Wall extends EntityRectangle {
 
 	protected Image img;
 
@@ -24,7 +25,5 @@ public class Wall extends Entity implements Rectangle {
 	public void setImg(Image img) {
 		this.img = img;
 	}
-	
-	
 	
 }

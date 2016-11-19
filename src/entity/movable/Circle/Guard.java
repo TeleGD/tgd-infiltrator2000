@@ -1,4 +1,4 @@
-package entity.movable;
+package entity.movable.Circle;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -47,6 +47,24 @@ public class Guard extends Character {
 			}
 			bool=1;
 		}
+	}
+
+	@Override
+	public int getRadius() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getPositionX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getPositionY() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	
