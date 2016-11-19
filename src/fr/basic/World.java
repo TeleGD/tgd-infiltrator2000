@@ -39,8 +39,8 @@ public class World extends BasicGameState{
 		items = new ArrayList<Item>();
 		projectiles = new ArrayList<Projectile>();
 		
-		guards.add(new Guard(100,100,1,1,30,null,this));
-		player = new Player(500., 300., 0., 0.,30, null, new ArrayList<Capacity>(),this);
+		guards.add(new Guard(100,100,1,1,30,50,null,this));
+		player = new Player(500., 300., 0., 0.,30,60, null, new ArrayList<Capacity>(),this);
 		areas.add(new Area(player, 100));
 	}
 
