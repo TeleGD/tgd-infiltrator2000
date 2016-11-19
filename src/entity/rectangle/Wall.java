@@ -20,7 +20,7 @@ public class Wall extends EntityRectangle {
 	}*/
 	
 	public Wall (double x, double y,int nbrTuilesX, int nbrTuilesY, Image tuileTop, Image tuile){
-		super(x,y,32*nbrTuilesX,32*nbrTuilesY);
+		super(x,y,(double)32*nbrTuilesX,(double)32*nbrTuilesY);
 		this.img = tuileTop;
 		this.img2=tuile;
 	}
