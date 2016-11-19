@@ -22,6 +22,24 @@ public class Player extends Character {
 	public void setInventaire(Array<Capacity> inventaire) {
 		this.inventaire = inventaire;
 	}
+
+	@Override
+	public int getRadius() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getPositionX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getPositionY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 

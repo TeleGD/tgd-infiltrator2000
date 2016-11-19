@@ -23,5 +23,23 @@ public class Guard extends Character {
 		this.visualField = visualField;
 	}
 
+	@Override
+	public int getRadius() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getPositionX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getPositionY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 }
