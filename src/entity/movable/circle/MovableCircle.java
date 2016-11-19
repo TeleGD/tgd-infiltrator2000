@@ -16,4 +16,14 @@ public class MovableCircle extends Movable implements Circle{
 		return 0;
 	}
 
+	@Override
+	public double getPositionX() {
+		return x;
+	}
+
+	@Override
+	public double getPositionY() {
+		return y;
+	}
+
 }
