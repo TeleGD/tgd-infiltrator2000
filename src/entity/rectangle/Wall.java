@@ -12,17 +12,17 @@ import fr.interfaces.Rectangle;
 
 public class Wall extends EntityRectangle {
 
-	protected Image img;
+	protected Image img,img2;
 
-	public Wall(double x, double y, Image img) {
+	/*public Wall(double x, double y, Image img) {
 		super(x, y);
 		this.img = img;
-	}
+	}*/
 	
-	public Wall (int nbrTuilesX, int nbrTuilesY, Image tuileTop, Image tuile){
-		super(x,y);
-		this.x=nbrTuilesX*32;
-		this.y=nbrTuilesY*32;
+	public Wall (double x, double y,int nbrTuilesX, int nbrTuilesY, Image tuileTop, Image tuile){
+		super(x,y,32*nbrTuilesX,32*nbrTuilesY);
+		this.img = tuileTop;
+		this.img2=tuile;
 	}
 
 	//----------------------------Get---------------
@@ -42,9 +42,11 @@ public class Wall extends EntityRectangle {
 	}
 	
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
-		arg3.setColor(Color.red);
-		arg3.fillRect((float)x, (float)y, (float)width, (float)height);
+		/*arg3.setColor(Color.red);
+		arg3.fillRect((float)x, (float)y, (float)width, (float)height);*/
 		
+		for(int i=0;i<width/32;i++){arg3.drawImage(img2, (float)x, (float)(y+height-32));}
+		for (int i = 1;i<height/32-1;i++){arg3.drawImage(img2, (float)x, (float)(y+height-32));}
 		
 	}
 }
