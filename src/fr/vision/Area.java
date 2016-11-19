@@ -8,6 +8,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 import entity.Entity;
 import entity.circle.EntityCircle;
 import entity.movable.circle.Character;
@@ -17,6 +19,8 @@ import entity.movable.rectangle.MovableRectangle;
 import fr.util.Collisions;
 
 public class Area {
+	
+	private ArrayList<Double> cone;
 	
 	private Character character;
 	private ArrayList<Entity> visibleEntities;
@@ -38,6 +42,33 @@ public class Area {
 		ArrayList<Entity> entities = character.getWorld().getEntities();
 		visibleEntities = new ArrayList<Entity>();
 		
+		cone = new ArrayList<Double>();
+		//Droite gauche
+		//--> 0
+		cone.add( -Math.sin( Math.PI/6 ) );
+		cone.add( Math.sin( Math.PI/6 ) );
+		//
+		cone.add( Math.sin( Math.PI/4 - Math.PI/6 ) );
+		cone.add( Math.sin( Math.PI/4 + Math.PI/6 ) );
+		//
+		cone.add( Math.sin( Math.PI/2 - Math.PI/6 ) );
+		cone.add( Math.sin( Math.PI/2 + Math.PI/6 ) );
+		//
+		cone.add( Math.sin( 3*Math.PI/4 - Math.PI/6 ) );
+		cone.add( Math.sin( 3*Math.PI/4 + Math.PI/6 ) );
+		//<-- 4
+		cone.add( Math.sin( Math.PI - Math.PI/6 ) );
+		cone.add( Math.sin( Math.PI + Math.PI/6 ) );
+		//
+		cone.add( Math.sin( 5*Math.PI/4 - Math.PI/6 ) );
+		cone.add( Math.sin( 5*Math.PI/4 + Math.PI/6 ) );
+		//
+		cone.add( Math.sin( 6*Math.PI/4 - Math.PI/6 ) );
+		cone.add( Math.sin( 6*Math.PI/4 + Math.PI/6 ) );
+		//
+		cone.add( Math.sin( 7*Math.PI/4 - Math.PI/6 ) );
+		cone.add( Math.sin( 7*Math.PI/4 + Math.PI/6 ) );
+		
 		/*
 		private ArrayList<Wall> walls;
 		private ArrayList<Guard> guards;
@@ -49,14 +80,21 @@ public class Area {
 		double tmpY = character.getY();
 		
 		EntityCircle tmpCircle = new EntityCircle(0, 0);
-		tmpCircle.setRadius(1);
+		tmpCircle.setRadius(3);
+		
+		
+		
+		/*
+		
 		for( double theta = character.getOrientation() - character.getFieldOfView(); theta <= character.getOrientation() + character.getFieldOfView(); theta++ ){
 			double d = 0;
 			Boolean continueD = true;
+			tmpCircle.setX( tmpX );
+			tmpCircle.setY( tmpY );
 			while( d <= size || continueD){
 				for( Entity entity : entities ){
-					tmpCircle.setX( tmpCircle.getX() + Math.sin(theta) );
-					tmpCircle.setY( tmpCircle.getY() + Math.cos(theta) );
+					tmpCircle.setX( tmpCircle.getX() + Math.sin((Math.PI/180)*(theta) ) );
+					tmpCircle.setY( tmpCircle.getY() + Math.cos((Math.PI/180)*(theta) ) );
 					d = norm( tmpX, tmpCircle.getX(), tmpY, tmpCircle.getY() );
 					if( entity instanceof MovableRectangle ){
 						if( Collisions.isCollision(tmpCircle, (MovableRectangle)entity) ){
@@ -72,7 +110,7 @@ public class Area {
 				}
 			}
 		}
-		
+		*/
 		if( character instanceof Player ){
 			changeState(entities, visibleEntities);
 		}
@@ -82,7 +120,6 @@ public class Area {
 	private void changeState(ArrayList<Entity> all, ArrayList<Entity> visible) {
 		for(Entity e : all){
 			if(visible.contains(e)){
-				System.out.println("ok");
 				e.setVisible(true);
 			} else {
 				e.setVisible(false);
@@ -96,13 +133,17 @@ public class Area {
 
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
 		arg3.setColor(Color.pink);
-		System.out.println(character.getWorld().getGuards().get(0).getVisible());
-		System.out.println( character.getX() + character.getRadius() );
-		System.out.println( character.getY() + character.getRadius() ); 
-		System.out.println( character.getX() + character.getRadius() + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) );
-		System.out.println( character.getY() + character.getRadius() + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) );
-		arg3.drawLine((float)(character.getX() - character.getRadius()), (float)(character.getY() - character.getRadius()), (float)(character.getX() - character.getRadius() + size * Math.tan( character.getOrientation() + character.getFieldOfView() ) ), (float)(character.getY() - character.getRadius() + size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
-		arg3.drawLine((float)(character.getX() - character.getRadius()), (float)(character.getY() - character.getRadius()), (float)(character.getX() - character.getRadius() + size * Math.tan( character.getOrientation() + character.getFieldOfView() ) ), (float)(character.getY() - character.getRadius()/2 - size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
+		//System.out.println(character.getWorld().getGuards().get(0).getVisible());
+		//System.out.println( character.getX() + character.getRadius() );
+		//System.out.println( character.getY() + character.getRadius() ); 
+		//System.out.println( character.getX() + character.getRadius() + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) );
+		//System.out.println( character.getY() + character.getRadius() + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) );
+		//System.out.println(character.getRadius());
+		//arg3.drawLine((float)(character.getX() - character.getRadius()), (float)(character.getY() - character.getRadius()), (float)(character.getX() - character.getRadius() + size * Math.sin( (Math.PI/180)*(character.getOrientation() + character.getFieldOfView() ) ) ), (float)(character.getY() - character.getRadius() + size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
+		//arg3.drawLine((float)(character.getX() - character.getRadius()), (float)(character.getY() - character.getRadius()), (float)(character.getX() - character.getRadius() + size * Math.sin( (Math.PI/180)*(character.getOrientation() + character.getFieldOfView() ) ) ), (float)(character.getY() - character.getRadius() - size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
+		if(character.getOrientation() == 0){
+			
+		}
 	}
 	
 	public int getSize() {
