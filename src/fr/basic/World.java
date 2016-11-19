@@ -33,9 +33,9 @@ public class World extends BasicGameState{
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		guards=new ArrayList<Guard>();
+		guards = new ArrayList<Guard>();
 		guards.add(new Guard(100,100,1,1,null,this));
-		
+		areas.add(new Area(player, 100));
 		walls = new ArrayList<Wall>();
 		guards = new ArrayList<Guard>();
 		items = new ArrayList<Item>();
@@ -45,6 +45,11 @@ public class World extends BasicGameState{
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
+		
+		for(Area a : areas){
+			a.render(arg0, arg1, arg2);
+		}
+		
 		for(Wall w : walls){
 			w.render(arg0, arg1, arg2);
 		}
