@@ -39,7 +39,7 @@ public class World extends BasicGameState{
 		items = new ArrayList<Item>();
 		projectiles = new ArrayList<Projectile>();
 		
-		walls.add(new Wall(1000,300,5,3,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
+		walls.add(new Wall(1000,300,1,10,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
 		guards.add(new Guard(100,100,1,1,30,50,null,this));
 		player = new Player(500., 300., 0., 0.,30,60, null, new ArrayList<Capacity>(),this);
 		areas.add(new Area(player, 100));

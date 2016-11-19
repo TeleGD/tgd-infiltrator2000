@@ -45,8 +45,9 @@ public class Wall extends EntityRectangle {
 		arg3.setColor(Color.red);
 		arg3.fillRect((float)x, (float)y, (float)width, (float)height);
 		
-		for(int i=0;i<width/32;i++){arg3.drawImage(img2, (float)x, (float)(y+height-32));}
-		for (int i = 1;i<height/32-1;i++){arg3.drawImage(img2, (float)x, (float)(y+height-32));}
+		for(int i=0;i<width/32;i++){arg3.drawImage(img2, (float)x+i*32, (float)(y+height-32));}
+		for(int i=0;i<width/32;i++){arg3.drawImage(img2, (float)x+i*32, (float)(y+height-64));}
+		for (int i = 2;i<height/32;i++){arg3.drawImage(img, (float)x, (float)(-32*i+y+height-32));}
 		
 	}
 }
