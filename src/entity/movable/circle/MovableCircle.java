@@ -1,4 +1,4 @@
-package entity.movable.Circle;
+package entity.movable.circle;
 
 import entity.movable.Movable;
 import fr.interfaces.Circle;
