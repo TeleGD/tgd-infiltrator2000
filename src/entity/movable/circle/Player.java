@@ -22,6 +22,7 @@ public class Player extends Character {
 	protected ArrayList<Wall> walls;
 	protected double speed = 0.25;
 	protected boolean left,right,up,down,collision;
+	protected double newX,newY;
 	
 	public Player(double x, double y, double sx, double sy, double radius,double view, Image im, ArrayList<Capacity> inv, World world) {
 		super(x, y, sx, sy, radius,view, im,world);
@@ -66,7 +67,27 @@ public class Player extends Character {
 			this.moveX(arg3);
 			this.moveY(arg3);
 		} else {
-			collision = true;
+			if ( up ){
+				this.setSpeedY(speed);
+				this.moveY(arg3);
+				this.setSpeedY(0);
+			}
+			if ( down ){
+				this.setSpeedY(-speed);
+				this.moveY(arg3);
+				this.setSpeedY(0);
+			}
+			if ( left ){
+				this.setSpeedX(speed);
+				this.moveX(arg3);
+				this.setSpeedX(0);
+			}
+			if ( right ){
+				this.setSpeedX(-speed);
+				this.moveX(arg3);
+				this.setSpeedX(0);
+			}
+			collision = false;
 		}
 	}
 	
