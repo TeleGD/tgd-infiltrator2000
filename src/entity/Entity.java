@@ -40,7 +40,7 @@ public abstract class Entity {
 		
 	}
 	
-	public void render(BasicGameState arg1, StateBasedGame arg2, Graphics arg3){
+	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3){
 	
 	}
 

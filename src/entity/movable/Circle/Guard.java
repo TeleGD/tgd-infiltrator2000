@@ -31,8 +31,8 @@ public class Guard extends Character {
 		
 	}
 	
-	public void render(BasicGameState arg1, StateBasedGame arg2, Graphics arg3){
-		arg3.fillOval((float)x, (float)y, (float)2*radius, (float)2*radius);
+	public void render(GameContainer arg1, StateBasedGame arg2, Graphics arg3){
+		arg3.fillOval((float)x, (float)y, (float)(2*radius), (float)(2*radius));
 	}
 	
 	public void movX(double x, double sx, double count, double bool, int delta){
