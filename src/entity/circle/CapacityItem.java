@@ -1,5 +1,7 @@
 package entity.circle;
 
+import fr.capacity.Capacity;
+
 public class CapacityItem extends Item {
 
 	protected Capacity capacityGranted;
