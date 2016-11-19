@@ -102,8 +102,8 @@ public class Area {
 
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
 		arg3.setColor(Color.orange);
-		arg3.drawLine(character.getX(), character.getY(), character.getX() + size * Math.cos( character.getOrientation() - character.getFieldOfView() ), character.getY() + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) );
-		arg3.drawLine(character.getX(), character.getY(), character.getX() + size * Math.cos( character.getOrientation() - character.getFieldOfView() ), character.getY() + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) );
+		arg3.drawLine((float)character.getX(), (float)character.getY(), (float)(character.getX() + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) ), (float)(character.getY() + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) ) );
+		arg3.drawLine((float)character.getX(), (float)character.getY(), (float)(character.getX() + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) ), (float)(character.getY() + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) ) );
 	}
 	
 	public int getSize() {
