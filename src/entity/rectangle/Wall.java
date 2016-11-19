@@ -42,8 +42,8 @@ public class Wall extends EntityRectangle {
 	}
 	
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
-		/*arg3.setColor(Color.red);
-		arg3.fillRect((float)x, (float)y, (float)width, (float)height);*/
+		arg3.setColor(Color.red);
+		arg3.fillRect((float)x, (float)y, (float)width, (float)height);
 		
 		for(int i=0;i<width/32;i++){arg3.drawImage(img2, (float)x, (float)(y+height-32));}
 		for (int i = 1;i<height/32-1;i++){arg3.drawImage(img2, (float)x, (float)(y+height-32));}
