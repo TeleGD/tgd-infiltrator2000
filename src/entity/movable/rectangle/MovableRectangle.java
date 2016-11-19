@@ -1,5 +1,7 @@
 package entity.movable.rectangle;
 
+import java.util.ArrayList;
+
 import entity.movable.Movable;
 import fr.interfaces.Rectangle;
 
@@ -11,27 +13,21 @@ public class MovableRectangle extends Movable implements Rectangle{
 	}
 
 	@Override
-	public int getPositionX() {
+	public double getHeight() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getPositionY() {
+	public double getWidth() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getHeight() {
+	public ArrayList<ArrayList<Double>> pixelBordeer() {
 		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 }
