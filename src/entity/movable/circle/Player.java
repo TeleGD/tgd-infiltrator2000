@@ -44,6 +44,7 @@ public class Player extends Character {
 		}
 	}
 	
+	@Override
 	public double getOrientation(){
 		if ( left ) return 180;
 		if ( right ) return 0;
