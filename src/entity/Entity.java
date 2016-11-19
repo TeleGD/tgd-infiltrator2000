@@ -10,6 +10,7 @@ public abstract class Entity {
 	
 	protected double x;
 	protected double y;
+	protected boolean visible;
 	
 	
 	
@@ -17,6 +18,7 @@ public abstract class Entity {
 		super();
 		this.x = x;
 		this.y = y;
+		this.visible=false;
 	}
 
 	//-------------------Get-----------------------
@@ -28,6 +30,10 @@ public abstract class Entity {
 		return y;
 	}
 	
+	public boolean getVisible(){
+		return visible;
+	}
+	
 	//--------------------Set-----------------------
 	public void setX(double x) {
 		this.x = x;
@@ -35,6 +41,10 @@ public abstract class Entity {
 	
 	public void setY(double y) {
 		this.y = y;
+	}
+	
+	public void setVisible(boolean visib){
+		this.visible=visib;
 	}
 	
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {

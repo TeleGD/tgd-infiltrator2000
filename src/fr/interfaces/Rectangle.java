@@ -1,9 +1,12 @@
 package fr.interfaces;
 
-public interface Rectangle {
-	public int getPositionX();
-	public int getPositionY();
-	public int getHeight();
-	public int getWidth();
+import java.util.ArrayList;
 
+public interface Rectangle {
+	public double getHeight();
+	public double getWidth();
+	public void setHeight(double height);
+	public void setWidth(double width);
+	public ArrayList<ArrayList<Double>> pixelBordeer();
+	public ArrayList<ArrayList<Double>> pixelBordeerWithSpeed();
 }
