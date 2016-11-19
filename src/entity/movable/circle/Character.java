@@ -54,4 +54,8 @@ public abstract class Character extends MovableCircle{
 		return this.view;
 	}
 	
+	public double getOrientation(){
+		return 0;
+	}
+	
 }
