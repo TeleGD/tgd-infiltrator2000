@@ -16,10 +16,12 @@ import fr.capacity.Capacity;
 public class Player extends Character {
 
 	protected ArrayList<Capacity> inventaire;
+	protected double speed = 0.25;
 	
 	public Player(double x, double y, double sx, double sy, Image im, ArrayList<Capacity> inv, World world) {
 		super(x, y, sx, sy, im,world);
 		this.inventaire=inv;
+		radius = 20;
 	}
 
 	//--------------------------Get-------------------
@@ -49,7 +51,7 @@ public class Player extends Character {
 	
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
 		arg3.setColor(Color.cyan);
-		arg3.fillRect((float)this.x, (float)this.y, 32, 32);
+		arg3.fillOval((float)(this.x-radius), (float)(this.y-radius), (float)radius, (float)radius);
 	}
 	
 	public void keyReleased(int key, char c) {
@@ -81,6 +83,18 @@ public class Player extends Character {
 		case Input.KEY_NUMPAD9:
 			this.setSpeedX(0);
 			this.setSpeedY(0);
+			break;
+		case Input.KEY_DOWN:
+			this.setSpeedY(0);
+			break;
+		case Input.KEY_UP:
+			this.setSpeedY(0);
+			break;
+		case Input.KEY_LEFT:
+			this.setSpeedX(0);
+			break;
+		case Input.KEY_RIGHT:
+			this.setSpeedX(0);
 			break;
 		}
 		
@@ -119,32 +133,44 @@ public class Player extends Character {
 			}
 			break;
 		case Input.KEY_NUMPAD1:
-			this.setSpeedX(-0.5);
-			this.setSpeedY(0.5);
+			this.setSpeedX(-speed);
+			this.setSpeedY(speed);
 			break;
 		case Input.KEY_NUMPAD2:
-			this.setSpeedY(0.5);
+			this.setSpeedY(speed);
 			break;
 		case Input.KEY_NUMPAD3:
-			this.setSpeedX(0.5);
-			this.setSpeedY(0.5);
+			this.setSpeedX(speed);
+			this.setSpeedY(speed);
 			break;
 		case Input.KEY_NUMPAD4:
-			this.setSpeedX(-0.5);
+			this.setSpeedX(-speed);
 			break;
 		case Input.KEY_NUMPAD6:
-			this.setSpeedX(0.5);
+			this.setSpeedX(speed);
 			break;
 		case Input.KEY_NUMPAD7:
-			this.setSpeedX(-0.5);
-			this.setSpeedY(-0.5);
+			this.setSpeedX(-speed);
+			this.setSpeedY(-speed);
 			break;
 		case Input.KEY_NUMPAD8:
-			this.setSpeedY(-0.5);
+			this.setSpeedY(-speed);
 			break;
 		case Input.KEY_NUMPAD9:
-			this.setSpeedX(0.5);
-			this.setSpeedY(-0.5);
+			this.setSpeedX(speed);
+			this.setSpeedY(-speed);
+			break;
+		case Input.KEY_DOWN:
+			this.setSpeedY(speed);
+			break;
+		case Input.KEY_UP:
+			this.setSpeedY(-speed);
+			break;
+		case Input.KEY_LEFT:
+			this.setSpeedX(-speed);
+			break;
+		case Input.KEY_RIGHT:
+			this.setSpeedX(speed);
 			break;
 		}
 	}
