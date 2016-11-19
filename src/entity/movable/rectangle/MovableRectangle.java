@@ -2,6 +2,11 @@ package entity.movable.rectangle;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
+
 import entity.movable.Movable;
 import fr.interfaces.Rectangle;
 
@@ -88,6 +93,14 @@ public class MovableRectangle extends Movable implements Rectangle{
 	public void setWidth(double width) {
 		this.width=width;
 		
+	}
+	
+	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
+		
+	}
+	
+	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
+	
 	}
 
 

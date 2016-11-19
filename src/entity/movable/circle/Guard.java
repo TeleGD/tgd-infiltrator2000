@@ -11,7 +11,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.vision.Area;
 
 public class Guard extends Character {
-	private double radius; 
 	protected Area visualField;
 	
 	public Guard(double x, double y, double sx, double sy, /*Image im,*/ Area visuFie) {
@@ -56,6 +55,8 @@ public class Guard extends Character {
 			bool=1;
 		}
 	}
+	
+	
 
 	
 }
