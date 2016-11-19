@@ -1,5 +1,9 @@
 package entity;
 
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
+
 public abstract class Entity {
 	
 	protected double x;
@@ -29,6 +33,14 @@ public abstract class Entity {
 	
 	public void setY(double y) {
 		this.y = y;
+	}
+	
+public void update(BasicGameState arg1, StateBasedGame arg2, int arg3)  {
+		
+	}
+	
+	public void render(BasicGameState arg1, StateBasedGame arg2, Graphics arg3){
+	
 	}
 
 }
