@@ -30,4 +30,10 @@ public class EntityRectangle extends Entity implements Rectangle {
 		return null;
 	}
 
+	@Override
+	public ArrayList<ArrayList<Double>> pixelBordeerWithSpeed() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

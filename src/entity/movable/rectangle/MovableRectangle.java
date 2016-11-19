@@ -30,4 +30,10 @@ public class MovableRectangle extends Movable implements Rectangle{
 		return null;
 	}
 
+	@Override
+	public ArrayList<ArrayList<Double>> pixelBordeerWithSpeed() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
