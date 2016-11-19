@@ -8,13 +8,14 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.basic.World;
 import fr.vision.Area;
 
 public class Guard extends Character {
 	protected Area visualField;
 	
-	public Guard(double x, double y, double sx, double sy, /*Image im,*/ Area visuFie) {
-		super(x, y, sx, sy, null);
+	public Guard(double x, double y, double sx, double sy, /*Image im,*/ Area visuFie, World world) {
+		super(x, y, sx, sy, null,world);
 		radius=100;
 		//this.visualField=visuFie;
 	}

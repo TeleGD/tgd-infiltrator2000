@@ -9,14 +9,16 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+
+import fr.basic.World;
 import fr.capacity.Capacity;
 
 public class Player extends Character {
 
 	protected ArrayList<Capacity> inventaire;
 	
-	public Player(double x, double y, double sx, double sy, Image im, ArrayList<Capacity> inv) {
-		super(x, y, sx, sy, im);
+	public Player(double x, double y, double sx, double sy, Image im, ArrayList<Capacity> inv, World world) {
+		super(x, y, sx, sy, im,world);
 		this.inventaire=inv;
 	}
 
@@ -117,32 +119,32 @@ public class Player extends Character {
 			}
 			break;
 		case Input.KEY_NUMPAD1:
-			this.setSpeedX(-1);
-			this.setSpeedY(1);
+			this.setSpeedX(-0.5);
+			this.setSpeedY(0.5);
 			break;
 		case Input.KEY_NUMPAD2:
-			this.setSpeedY(1);
+			this.setSpeedY(0.5);
 			break;
 		case Input.KEY_NUMPAD3:
-			this.setSpeedX(1);
-			this.setSpeedY(1);
+			this.setSpeedX(0.5);
+			this.setSpeedY(0.5);
 			break;
 		case Input.KEY_NUMPAD4:
-			this.setSpeedX(-1);
+			this.setSpeedX(-0.5);
 			break;
 		case Input.KEY_NUMPAD6:
-			this.setSpeedX(1);
+			this.setSpeedX(0.5);
 			break;
 		case Input.KEY_NUMPAD7:
-			this.setSpeedX(-1);
-			this.setSpeedY(-1);
+			this.setSpeedX(-0.5);
+			this.setSpeedY(-0.5);
 			break;
 		case Input.KEY_NUMPAD8:
-			this.setSpeedY(-1);
+			this.setSpeedY(-0.5);
 			break;
 		case Input.KEY_NUMPAD9:
-			this.setSpeedX(1);
-			this.setSpeedY(-1);
+			this.setSpeedX(0.5);
+			this.setSpeedY(-0.5);
 			break;
 		}
 	}

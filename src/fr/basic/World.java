@@ -34,13 +34,13 @@ public class World extends BasicGameState{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		guards=new ArrayList<Guard>();
-		guards.add(new Guard(100,100,1,1,null));
+		guards.add(new Guard(100,100,1,1,null,this));
 		
 		walls = new ArrayList<Wall>();
 		guards = new ArrayList<Guard>();
 		items = new ArrayList<Item>();
 		projectiles = new ArrayList<Projectile>();
-		player = new Player(500., 300., 0., 0., null, new ArrayList<Capacity>());
+		player = new Player(500., 300., 0., 0., null, new ArrayList<Capacity>(),this);
 	}
 
 	@Override

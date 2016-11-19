@@ -7,15 +7,18 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import entity.movable.Movable;
+import fr.basic.World;
 import fr.interfaces.Circle;
 
 public abstract class Character extends MovableCircle{
 
 	protected Image img;
+	protected World world; 
 	
-	public Character(double x, double y, double sx, double sy,Image im) {
+	public Character(double x, double y, double sx, double sy,Image im,World world) {
 		super(x, y, sx, sy);
 		this.img=im;
+		this.world=world;
 	}
 
 
@@ -39,5 +42,7 @@ public abstract class Character extends MovableCircle{
 	
 	}
 	
-	
+	public World getWorld(){
+		return this.world;
+	}
 }
