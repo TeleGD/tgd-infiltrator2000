@@ -2,5 +2,19 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/ibxm.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/jinput.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/jnlp.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/jogg-0.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/jorbis-0.0.15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/lwjgl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/lwjgl_util_applet.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/natives-linux.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/natives-mac.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/natives-windows.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/slick.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/slick-examples.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mirwax/Desktop/TGD/TGD7/lib/tinylinepp.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
