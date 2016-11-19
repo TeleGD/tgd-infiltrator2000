@@ -1,26 +1,19 @@
 package fr.vision;
 
-import java.awt.Point;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Line;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import entity.Entity;
 import entity.circle.EntityCircle;
-import entity.circle.Item;
-import entity.movable.Projectile;
 import entity.movable.circle.Character;
-import entity.movable.circle.Guard;
 import entity.movable.circle.MovableCircle;
 import entity.movable.circle.Player;
 import entity.movable.rectangle.MovableRectangle;
-import entity.rectangle.Wall;
 import fr.util.Collisions;
 
 public class Area {
@@ -89,6 +82,7 @@ public class Area {
 	private void changeState(ArrayList<Entity> all, ArrayList<Entity> visible) {
 		for(Entity e : all){
 			if(visible.contains(e)){
+				System.out.println("ok");
 				e.setVisible(true);
 			} else {
 				e.setVisible(false);
@@ -102,8 +96,13 @@ public class Area {
 
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
 		arg3.setColor(Color.pink);
-		arg3.drawLine((float)(character.getX() + character.getRadius()/2), (float)(character.getY() + character.getRadius()/2), (float)(character.getX() + character.getRadius()/2 + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) ), (float)(character.getY() + character.getRadius()/2 + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) ) );
-		arg3.drawLine((float)(character.getX() + character.getRadius()/2), (float)(character.getY() + character.getRadius()/2), (float)(character.getX() + character.getRadius()/2 + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) ), (float)(character.getY() + character.getRadius()/2 - size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
+		System.out.println(character.getWorld().getGuards().get(0).getVisible());
+		System.out.println( character.getX() + character.getRadius()/2 );
+		System.out.println( character.getY() + character.getRadius()/2 ); 
+		System.out.println( character.getX() + character.getRadius()/2 + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) );
+		System.out.println( character.getY() + character.getRadius()/2 + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) );
+		arg3.drawLine((float)(character.getX() - character.getRadius()/2), (float)(character.getY() - character.getRadius()/2), (float)(character.getX() - character.getRadius()/2 + size * Math.tan( character.getOrientation() + character.getFieldOfView() ) ), (float)(character.getY() - character.getRadius()/2 + size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
+		arg3.drawLine((float)(character.getX() - character.getRadius()/2), (float)(character.getY() - character.getRadius()/2), (float)(character.getX() - character.getRadius()/2 + size * Math.tan( character.getOrientation() + character.getFieldOfView() ) ), (float)(character.getY() - character.getRadius()/2 - size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
 	}
 	
 	public int getSize() {
