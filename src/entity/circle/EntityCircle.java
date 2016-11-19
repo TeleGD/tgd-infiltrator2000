@@ -5,27 +5,22 @@ import fr.interfaces.Circle;
 
 public class EntityCircle extends Entity implements Circle {
 
+	protected double radius;
+	
 	public EntityCircle(double x, double y) {
 		super(x, y);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public double getRadius() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.radius;
 	}
 
 	@Override
-	public double getPositionX() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setRadius(double radius) {
+		this.radius=radius;
+		
 	}
 
-	@Override
-	public double getPositionY() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }

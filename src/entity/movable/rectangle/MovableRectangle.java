@@ -78,4 +78,18 @@ public class MovableRectangle extends Movable implements Rectangle{
 		return res;
 	}
 
+	@Override
+	public void setHeight(double height) {
+		this.height=height;
+		
+	}
+
+	@Override
+	public void setWidth(double width) {
+		this.width=width;
+		
+	}
+
+
+
 }
