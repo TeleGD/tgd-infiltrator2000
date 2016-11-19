@@ -16,6 +16,7 @@ public class Guard extends Character {
 	
 	public Guard(double x, double y, double sx, double sy, /*Image im,*/ Area visuFie) {
 		super(x, y, sx, sy, null);
+		radius=100;
 		//this.visualField=visuFie;
 	}
 
@@ -37,7 +38,8 @@ public class Guard extends Character {
 	
 	public void render(GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException {
 		arg3.setColor(Color.magenta);
-		arg3.fillOval((float)x, (float)y, (float)(2*radius), (float)(2*radius));
+		arg3.fillOval((float)100, (float)100, (float)(2*100), (float)(2*100));
+		System.out.println("bite");
 	}
 	
 	public void movX(double x, double sx, double count, double bool, int delta){
