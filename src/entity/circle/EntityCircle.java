@@ -13,19 +13,7 @@ public class EntityCircle extends Entity implements Circle {
 	}
 
 	@Override
-	public int getRadius() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getPositionX() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getPositionY() {
+	public double getRadius() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
