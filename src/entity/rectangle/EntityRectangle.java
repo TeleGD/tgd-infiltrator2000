@@ -15,9 +15,10 @@ public class EntityRectangle extends Entity implements Rectangle {
 	protected double height;
 	protected double width;
 	
-	public EntityRectangle(double x, double y) {
+	public EntityRectangle(double x, double y,double width,double height) {
 		super(x, y);
-		// TODO Auto-generated constructor stub
+		this.height=height;
+		this.width=width;
 	}
 
 	@Override
