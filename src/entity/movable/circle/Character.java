@@ -45,4 +45,16 @@ public abstract class Character extends MovableCircle{
 	public World getWorld(){
 		return this.world;
 	}
+
+
+	public int getOrientation() {
+		return 0;
+	}
+
+
+	public int getFieldOfView() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }

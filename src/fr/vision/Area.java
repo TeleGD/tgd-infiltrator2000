@@ -57,7 +57,7 @@ public class Area {
 		
 		EntityCircle tmpCircle = new EntityCircle(0, 0);
 		tmpCircle.setRadius(1);
-		for( int theta = character.getOrientation() - character.getFieldOfView(); theta <= character.getORIENTATION() + character.getFieldOfView(); theta++ ){
+		for( int theta = character.getOrientation() - character.getFieldOfView(); theta <= character.getOrientation() + character.getFieldOfView(); theta++ ){
 			double d = 0;
 			Boolean continueD = true;
 			while( d <= size || continueD){
