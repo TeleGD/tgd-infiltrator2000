@@ -10,14 +10,18 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import entity.rectangle.EntityRectangle;
+import entity.rectangle.Wall;
 import fr.basic.World;
 import fr.capacity.Capacity;
+import fr.util.Collisions;
 
 public class Player extends Character {
 
 	protected ArrayList<Capacity> inventaire;
+	protected ArrayList<Wall> walls;
 	protected double speed = 0.25;
-	protected boolean left,right,up,down;
+	protected boolean left,right,up,down,collision;
 	
 	public Player(double x, double y, double sx, double sy, double radius,double view, Image im, ArrayList<Capacity> inv, World world) {
 		super(x, y, sx, sy, radius,view, im,world);
@@ -54,13 +58,21 @@ public class Player extends Character {
 	}
 	
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
-		this.moveX(arg3);
-		this.moveY(arg3);
+		this.walls = this.getWorld().getWalls();
+		for ( Wall w : walls ){
+			collision = Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
+		}
+		if ( !collision ){
+			this.moveX(arg3);
+			this.moveY(arg3);
+		} else {
+			collision = true;
+		}
 	}
 	
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
 		arg3.setColor(Color.cyan);
-		arg3.fillOval((float)(this.x-radius), (float)(this.y-radius), (float)radius, (float)radius);
+		arg3.fillOval((float)(this.x-radius), (float)(this.y-radius), (float)(2*radius), (float)(2*radius));
 	}
 	
 	public void keyReleased(int key, char c) {
