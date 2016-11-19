@@ -57,7 +57,7 @@ public class Area {
 		
 		EntityCircle tmpCircle = new EntityCircle(0, 0);
 		tmpCircle.setRadius(1);
-		for( int theta = character.getOrientation() - character.getFieldOfView(); theta <= character.getOrientation() + character.getFieldOfView(); theta++ ){
+		for( double theta = character.getOrientation() - character.getFieldOfView(); theta <= character.getOrientation() + character.getFieldOfView(); theta++ ){
 			double d = 0;
 			Boolean continueD = true;
 			while( d <= size || continueD){
@@ -101,9 +101,9 @@ public class Area {
 	}
 
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
-		arg3.setColor(Color.orange);
-		arg3.drawLine((float)character.getX(), (float)character.getY(), (float)(character.getX() + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) ), (float)(character.getY() + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) ) );
-		arg3.drawLine((float)character.getX(), (float)character.getY(), (float)(character.getX() + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) ), (float)(character.getY() + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) ) );
+		arg3.setColor(Color.pink);
+		arg3.drawLine((float)(character.getX() + character.getRadius()/2), (float)(character.getY() + character.getRadius()/2), (float)(character.getX() + character.getRadius()/2 + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) ), (float)(character.getY() + character.getRadius()/2 + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) ) );
+		arg3.drawLine((float)(character.getX() + character.getRadius()/2), (float)(character.getY() + character.getRadius()/2), (float)(character.getX() + character.getRadius()/2 + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) ), (float)(character.getY() + character.getRadius()/2 - size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
 	}
 	
 	public int getSize() {
