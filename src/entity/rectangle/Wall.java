@@ -1,5 +1,6 @@
 package entity.rectangle;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -35,6 +36,7 @@ public class Wall extends EntityRectangle {
 	}
 	
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
-	
+		arg3.setColor(Color.red);
+		arg3.fillRect((float)x, (float)y, (float)width, (float)height);
 	}
 }
