@@ -14,11 +14,13 @@ public abstract class Character extends MovableCircle{
 
 	protected Image img;
 	protected World world; 
+	protected double radius;
 	
-	public Character(double x, double y, double sx, double sy,Image im,World world) {
+	public Character(double x, double y, double sx, double sy, double radius,Image im,World world) {
 		super(x, y, sx, sy);
 		this.img=im;
 		this.world=world;
+		this.radius = radius;
 	}
 
 
@@ -44,17 +46,6 @@ public abstract class Character extends MovableCircle{
 	
 	public World getWorld(){
 		return this.world;
-	}
-
-
-	public int getOrientation() {
-		return 0;
-	}
-
-
-	public int getFieldOfView() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 	
 }
