@@ -3,6 +3,7 @@ package entity.movable.Circle;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Guard extends Character {
@@ -31,7 +32,7 @@ public class Guard extends Character {
 	}
 	
 	public void render(GameContainer arg1, StateBasedGame arg2, Graphics arg3){
-		arg3.fillOval((float)x, (float)y, (float)2*radius, (float)2*radius);
+		arg3.fillOval((float)x, (float)y, (float)(2*radius), (float)(2*radius));
 	}
 	
 	public void movX(double x, double sx, double count, double bool, int delta){

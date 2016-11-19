@@ -1,5 +1,6 @@
 package entity;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -35,11 +36,11 @@ public abstract class Entity {
 		this.y = y;
 	}
 	
-public void update(BasicGameState arg1, StateBasedGame arg2, int arg3)  {
+	public void update(GameContainer arg1, StateBasedGame arg2, int arg3)  {
 		
 	}
 	
-	public void render(BasicGameState arg1, StateBasedGame arg2, Graphics arg3){
+	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3){
 	
 	}
 
