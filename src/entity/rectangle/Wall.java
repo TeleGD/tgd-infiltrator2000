@@ -18,6 +18,12 @@ public class Wall extends EntityRectangle {
 		super(x, y);
 		this.img = img;
 	}
+	
+	public Wall (int nbrTuilesX, int nbrTuilesY, Image tuileTop, Image tuile){
+		super(x,y);
+		this.x=nbrTuilesX*32;
+		this.y=nbrTuilesY*32;
+	}
 
 	//----------------------------Get---------------
 	
@@ -38,5 +44,7 @@ public class Wall extends EntityRectangle {
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
 		arg3.setColor(Color.red);
 		arg3.fillRect((float)x, (float)y, (float)width, (float)height);
+		
+		
 	}
 }
