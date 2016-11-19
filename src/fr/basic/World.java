@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -15,6 +16,8 @@ import entity.movable.circle.Player;
 import entity.movable.Projectile;
 import entity.rectangle.Wall;
 import fr.util.Chrono;
+import fr.vision.Area;
+import fr.capacity.Capacity;
 
 public class World extends BasicGameState{
 
@@ -26,10 +29,10 @@ public class World extends BasicGameState{
 	private ArrayList<Guard> guards;
 	private ArrayList<Item> items;
 	private ArrayList<Projectile> projectiles;
+	private ArrayList<Area> areas;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		// TODO Auto-generated method stub
 		guards=new ArrayList<Guard>();
 		guards.add(new Guard(100,100,1,1,null));
 		
@@ -37,8 +40,7 @@ public class World extends BasicGameState{
 		guards = new ArrayList<Guard>();
 		items = new ArrayList<Item>();
 		projectiles = new ArrayList<Projectile>();
-		player = new Player(500, 300, 0, 0, null, null);
-		
+		player = new Player(500., 300., 0., 0., null, new ArrayList<Capacity>());
 	}
 
 	@Override
@@ -58,8 +60,7 @@ public class World extends BasicGameState{
 		for(Projectile p : projectiles){
 			p.render(arg0, arg1, arg2);
 		}
-		player.render(arg0, arg1, arg2);
-		
+		player.render(arg0, arg1, arg2);	
 	}
 
 	@Override
@@ -85,8 +86,7 @@ public class World extends BasicGameState{
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ID;
 	}
 	
 	public void keyPressed(int key, char c){
@@ -95,6 +95,26 @@ public class World extends BasicGameState{
 	
 	public void keyReleased(int key, char c){
 		player.keyReleased(key,c);
+	}
+	
+	public void addWall(Wall w){
+		walls.add(w);
+	}
+	
+	public void addGuard(Guard g){
+		guards.add(g);
+	}
+	
+	public void addItem(Item i){
+		items.add(i);
+	}
+	
+	public void addProjectiles(Projectile p){
+		projectiles.add(p);
+	}
+	
+	public void addArea(Area a) {
+		areas.add(a);
 	}
 	
 	public ArrayList<Wall> getWalls(){
@@ -109,6 +129,10 @@ public class World extends BasicGameState{
 		return items;
 	}
 	
+	public ArrayList<Area> getAreas() {
+		return areas;
+	}
+	
 	public ArrayList<Entity> getEntities(){
 		ArrayList<Entity> tmp = new ArrayList<Entity>();
 		tmp.addAll(walls);
@@ -121,5 +145,5 @@ public class World extends BasicGameState{
 	public void reset(){
 		
 	}
-	
+
 }
