@@ -37,6 +37,7 @@ public class World extends BasicGameState{
 		guards = new ArrayList<Guard>();
 		items = new ArrayList<Item>();
 		projectiles = new ArrayList<Projectile>();
+		player = new Player(500, 300, 0, 0, null, null);
 		
 	}
 
@@ -57,6 +58,7 @@ public class World extends BasicGameState{
 		for(Projectile p : projectiles){
 			p.render(arg0, arg1, arg2);
 		}
+		player.render(arg0, arg1, arg2);
 		
 	}
 
@@ -77,6 +79,7 @@ public class World extends BasicGameState{
 		for(Projectile p : projectiles){
 			p.update(arg0, arg1, arg2);
 		}
+		player.update(arg0, arg1, arg2);
 		
 	}
 
