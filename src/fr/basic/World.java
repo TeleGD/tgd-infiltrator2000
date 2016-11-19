@@ -21,7 +21,7 @@ import fr.capacity.Capacity;
 
 public class World extends BasicGameState{
 
-	private int ID;
+	public static int ID = 0;
 	private Chrono chrono;
 	private Player player;
 	private StateBasedGame game;
@@ -142,7 +142,7 @@ public class World extends BasicGameState{
 		return tmp;
 	}
 	
-	public void reset(){
+	public static void reset(){
 		
 	}
 
