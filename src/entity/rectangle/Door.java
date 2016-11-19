@@ -1,4 +1,4 @@
-package entity.wall;
+package entity.rectangle;
 
 import org.newdawn.slick.Image;
 

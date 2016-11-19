@@ -1,12 +1,13 @@
-package entity.item;
+package entity.movable.Circle;
 
-import entity.Entity;
+import entity.movable.Movable;
 import fr.interfaces.Circle;
 
-public class Item extends Entity implements Circle {
+public class MovableCircle extends Movable implements Circle{
 
-	public Item(double x, double y) {
-		super(x,y);
+	public MovableCircle(double x, double y, double sx, double sy) {
+		super(x, y, sx, sy);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

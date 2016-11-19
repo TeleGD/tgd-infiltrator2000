@@ -1,29 +1,13 @@
-package entity.wall;
-
-import org.newdawn.slick.Image;
+package entity.rectangle;
 
 import entity.Entity;
 import fr.interfaces.Rectangle;
 
-public class Wall extends Entity implements Rectangle {
+public class EntityRectangle extends Entity implements Rectangle {
 
-	protected Image img;
-
-	public Wall(double x, double y, Image img) {
+	public EntityRectangle(double x, double y) {
 		super(x, y);
-		this.img = img;
-	}
-
-	//----------------------------Get---------------
-	
-	public Image getImg() {
-		return img;
-	}
-
-	//----------------------------Set---------------
-	
-	public void setImg(Image img) {
-		this.img = img;
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -49,7 +33,5 @@ public class Wall extends Entity implements Rectangle {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	
-	
+
 }

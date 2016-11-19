@@ -1,4 +1,4 @@
-package entity.movable;
+package entity.movable.Circle;
 
 import org.newdawn.slick.Image;
 

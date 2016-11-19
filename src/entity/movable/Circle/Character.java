@@ -1,10 +1,11 @@
-package entity.movable;
+package entity.movable.Circle;
 
 import org.newdawn.slick.Image;
 
+import entity.movable.Movable;
 import fr.interfaces.Circle;
 
-public abstract class Character extends Movable implements Circle{
+public abstract class Character extends MovableCircle{
 
 	protected Image img;
 	
