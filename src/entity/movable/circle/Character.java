@@ -14,7 +14,6 @@ public abstract class Character extends MovableCircle{
 
 	protected Image img;
 	protected World world; 
-	protected double radius;
 	protected double view;
 	
 	public Character(double x, double y, double sx, double sy, double radius, double view,Image im,World world) {
@@ -23,6 +22,7 @@ public abstract class Character extends MovableCircle{
 		this.world=world;
 		this.radius = radius;
 		this.view = view;
+		this.radius = radius;
 	}
 
 
