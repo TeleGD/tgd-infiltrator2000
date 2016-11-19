@@ -13,8 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-import fr.main.World;
-import fr.menus.MenuSortie;
+import fr.basic.World;
 
 public class Menu extends BasicGameState {
 	
@@ -69,7 +68,7 @@ public class Menu extends BasicGameState {
 	public void keyPressed(int key, char c) {
 		switch (key) {
 		case Input.KEY_S:
-			if (selection < nbrOption - 1)
+			if (selection < nbrOptions - 1)
 				selection++;
 			else
 				selection = 0;
@@ -78,7 +77,7 @@ public class Menu extends BasicGameState {
 			if (selection > 0)
 				selection--;
 			else
-				selection = nbrOption - 1;
+				selection = nbrOptions - 1;
 			break;
 		case Input.KEY_ENTER:
 			execOption();
