@@ -97,12 +97,12 @@ public class Area {
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
 		arg3.setColor(Color.pink);
 		System.out.println(character.getWorld().getGuards().get(0).getVisible());
-		System.out.println( character.getX() + character.getRadius()/2 );
-		System.out.println( character.getY() + character.getRadius()/2 ); 
-		System.out.println( character.getX() + character.getRadius()/2 + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) );
-		System.out.println( character.getY() + character.getRadius()/2 + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) );
-		arg3.drawLine((float)(character.getX() - character.getRadius()/2), (float)(character.getY() - character.getRadius()/2), (float)(character.getX() - character.getRadius()/2 + size * Math.tan( character.getOrientation() + character.getFieldOfView() ) ), (float)(character.getY() - character.getRadius()/2 + size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
-		arg3.drawLine((float)(character.getX() - character.getRadius()/2), (float)(character.getY() - character.getRadius()/2), (float)(character.getX() - character.getRadius()/2 + size * Math.tan( character.getOrientation() + character.getFieldOfView() ) ), (float)(character.getY() - character.getRadius()/2 - size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
+		System.out.println( character.getX() + character.getRadius() );
+		System.out.println( character.getY() + character.getRadius() ); 
+		System.out.println( character.getX() + character.getRadius() + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) );
+		System.out.println( character.getY() + character.getRadius() + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) );
+		arg3.drawLine((float)(character.getX() - character.getRadius()), (float)(character.getY() - character.getRadius()), (float)(character.getX() - character.getRadius() + size * Math.tan( character.getOrientation() + character.getFieldOfView() ) ), (float)(character.getY() - character.getRadius() + size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
+		arg3.drawLine((float)(character.getX() - character.getRadius()), (float)(character.getY() - character.getRadius()), (float)(character.getX() - character.getRadius() + size * Math.tan( character.getOrientation() + character.getFieldOfView() ) ), (float)(character.getY() - character.getRadius()/2 - size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
 	}
 	
 	public int getSize() {
