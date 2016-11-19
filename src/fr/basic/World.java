@@ -39,39 +39,43 @@ public class World extends BasicGameState{
 		items = new ArrayList<Item>();
 		projectiles = new ArrayList<Projectile>();
 		
-		guards.add(new Guard(100,100,1,1,null,this));
-		player = new Player(500., 300., 0., 0., null, new ArrayList<Capacity>(),this);
+		guards.add(new Guard(100,100,1,1,30,null,this));
+		player = new Player(500., 300., 0., 0.,30, null, new ArrayList<Capacity>(),this);
 		areas.add(new Area(player, 100));
 	}
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		
-		for(Area a : areas){
-			a.render(arg0, arg1, arg2);
-		}
-		
 		for(Wall w : walls){
 			w.render(arg0, arg1, arg2);
-		}
-		
-		for(Guard g : guards){
-			g.render(arg0, arg1, arg2);
 		}
 		
 		for(Item i : items){
 			i.render(arg0, arg1, arg2);
 		}
 		
-		for(Projectile p : projectiles){
-			p.render(arg0, arg1, arg2);
+		for(Guard g : guards){
+			g.render(arg0, arg1, arg2);
 		}
 		
 		player.render(arg0, arg1, arg2);	
+		
+		for(Area a : areas){
+			a.render(arg0, arg1, arg2);
+		}
+		
+		for(Projectile p : projectiles){
+			p.render(arg0, arg1, arg2);
+		}
 	}
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
+		for(Projectile p : projectiles){
+			p.update(arg0, arg1, arg2);
+		}
+		
 		for(Wall w : walls){
 			w.update(arg0, arg1, arg2);
 		}
@@ -84,11 +88,7 @@ public class World extends BasicGameState{
 			i.update(arg0, arg1, arg2);
 		}
 		
-		for(Projectile p : projectiles){
-			p.update(arg0, arg1, arg2);
-		}
 		player.update(arg0, arg1, arg2);
-		
 	}
 
 	@Override
