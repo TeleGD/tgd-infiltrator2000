@@ -3,8 +3,13 @@ package fr.vision;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.state.StateBasedGame;
 
 import entity.Entity;
 import entity.circle.EntityCircle;
@@ -51,7 +56,8 @@ public class Area {
 		double tmpY = character.getY();
 		
 		EntityCircle tmpCircle = new EntityCircle(0, 0);
-		for( int theta = character.getOrientation() - character.getFieldOfView(); theta <= character.getORIENTATION() + character.getFieldOfView(); theta++ ){
+		tmpCircle.setRadius(1);
+		for( int theta = character.getOrientation() - character.getFieldOfView(); theta <= character.getOrientation() + character.getFieldOfView(); theta++ ){
 			double d = 0;
 			Boolean continueD = true;
 			while( d <= size || continueD){
@@ -94,7 +100,12 @@ public class Area {
 		return Math.sqrt( Math.pow(xA-xB,2) + Math.pow(yA-yB,2) );
 	}
 
-
+	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
+		arg3.setColor(Color.orange);
+		arg3.drawLine((float)character.getX(), (float)character.getY(), (float)(character.getX() + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) ), (float)(character.getY() + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) ) );
+		arg3.drawLine((float)character.getX(), (float)character.getY(), (float)(character.getX() + size * Math.cos( character.getOrientation() - character.getFieldOfView() ) ), (float)(character.getY() + size * Math.sin( character.getOrientation() - character.getFieldOfView() ) ) );
+	}
+	
 	public int getSize() {
 		return size;
 	}
