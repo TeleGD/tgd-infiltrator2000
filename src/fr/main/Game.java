@@ -17,7 +17,7 @@ public class Game extends StateBasedGame {
 	}
 
 	public Game() {
-		super("|NF|1TR470R 2000");
+		super("1NF1|TR470R 2000");
 	}
 
 	public static void main(String[] args) throws SlickException {
@@ -32,6 +32,7 @@ public class Game extends StateBasedGame {
 	public void initStatesList(GameContainer container) throws SlickException {
  		addState(new MenuPrincipal());
 		addState(new World());
+		addState(new MenuFin());
 	}
 
 }
