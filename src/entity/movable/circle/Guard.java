@@ -14,14 +14,21 @@ import fr.vision.Areabis;
 
 public class Guard extends Character {
 	protected Areabis visualField;
+	protected boolean enVie;
 	
 	public Guard(double x, double y, double sx, double sy, double radius, double view, /*Image im,*/ Areabis visuFie, World world) {
 		super(x, y, sx, sy,radius,view, null);
 		this.visualField=visuFie;
+		this.enVie=true;
 	}
 
+	
 	//------------------------------Get--------------
 	
+	public boolean isEnVie() {
+		return enVie;
+	}
+
 	public Areabis getVisualField() {
 		return visualField;
 	}
@@ -31,6 +38,12 @@ public class Guard extends Character {
 	public void setVisualField(Areabis visualField) {
 		this.visualField = visualField;
 	}
+	
+	public void setEnVie(boolean enVie) {
+		this.enVie = enVie;
+	}
+	
+	
 	
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
 		super.update(arg1, arg2, arg3);

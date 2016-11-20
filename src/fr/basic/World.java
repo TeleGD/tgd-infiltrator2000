@@ -13,7 +13,7 @@ import entity.Entity;
 import entity.circle.Item;
 import entity.movable.circle.Guard;
 import entity.movable.circle.Player;
-import entity.movable.Projectile;
+import entity.movable.circle.Projectile;
 import entity.rectangle.FrontalWall;
 import entity.rectangle.LateralWall;
 import entity.rectangle.Wall;
@@ -29,6 +29,7 @@ public class World extends BasicGameState{
 	private StateBasedGame game;
 	private static ArrayList<Wall> walls;
 	private static ArrayList<Guard> guards;
+	private ArrayList<Integer> deadGuardsIndexes;
 	private static ArrayList<Item> items;
 	private static ArrayList<Projectile> projectiles;
 	private static ArrayList<Area> areas;
@@ -66,7 +67,8 @@ public class World extends BasicGameState{
 		}
 		
 		for(Guard g : guards){
-			g.render(arg0, arg1, arg2);
+			//NE PAS RENDER LES GARDES MORTS
+			if(g.isEnVie()) g.render(arg0, arg1, arg2);
 		}
 		
 		player.render(arg0, arg1, arg2);	
@@ -83,6 +85,8 @@ public class World extends BasicGameState{
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
+		//if(chrono.getTime() > 2000) guards.get(0).setEnVie(false);
+		
 		for(Projectile p : projectiles){
 			p.update(arg0, arg1, arg2);
 		}
@@ -92,7 +96,8 @@ public class World extends BasicGameState{
 		}
 		
 		for(Guard g : guards){
-			g.update(arg0, arg1, arg2);
+			//NE PAS UPDATE LES GARDES MORTS
+			if(g.isEnVie()) g.update(arg0, arg1, arg2);
 		}
 		
 		for(Item i : items){
@@ -150,6 +155,10 @@ public class World extends BasicGameState{
 	
 	public static ArrayList<Area> getAreas() {
 		return areas;
+	}
+	
+	public static ArrayList<Projectile> getProjectiles(){
+		return projectiles;
 	}
 	
 	public static ArrayList<Entity> getEntities(){
