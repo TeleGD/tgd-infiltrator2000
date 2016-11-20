@@ -46,4 +46,9 @@ public class Chrono {
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		if (go && !pause) chrono = System.currentTimeMillis()-time;
 	}
+	
+	public long getTime(){
+		return chrono;
+	}
+	
 }
