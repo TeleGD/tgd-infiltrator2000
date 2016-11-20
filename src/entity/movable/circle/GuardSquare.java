@@ -12,6 +12,7 @@ import fr.vision.Areabis;
 public class GuardSquare extends Guard{
 	public GuardSquare(double x, double y, double sx, double sy, double radius, double view, /*Image im,*/ Areabis visuFie, World world) {
 		super(x, y, sx, sy,radius,view, null, world);
+		this.speedX=0;
 		this.visualField=visuFie;
 	}
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
