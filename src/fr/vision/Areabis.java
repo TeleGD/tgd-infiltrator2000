@@ -4,23 +4,38 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.state.StateBasedGame;
 import entity.movable.circle.Character;
 
-public class Areabis {
+public class Areabis extends Polygon{
 
 	private double a1,b1,a2,b2;
 	private Character character;
-	private float x1,x2,y1,y2;
+	private double x,y;
 	
 	
 	public Areabis(Character character){
 		this.character=character;
+		this.addPoint((float)character.getX(), (float)character.getY());
+		this.addPoint((float)(character.getX()+character.getRadius()*Math.cos(Math.PI/3)), (float) ((float) (character.getY())+character.getRadius()*Math.sin(Math.PI/3)));
+		this.addPoint((float)(character.getX()+character.getRadius()*Math.cos(Math.PI/3)), (float) ((float) (character.getY())+character.getRadius()*Math.sin(-Math.PI/3)));
+		
+		
+	}
+	
+	public Areabis(double x,double y,Character character){
+		this.character=character;
+		this.x=x;
+		this.y=y;
+		this.a1=character.getRadius()*Math.cos(Math.PI/6);
+		this.a2=a1;
+		this.b1=character.getRadius()*Math.sin(Math.PI/6);
+		this.b2=-character.getRadius()*Math.sin(Math.PI/6);
 	}
 	
 	
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
-		
 		arg3.setColor(Color.red);
 		arg3.drawLine((float)character.getX(), (float)character.getY(), (float)(character.getX()+a1), (float)(character.getY()+b1));
 		arg3.drawLine((float)character.getX(), (float)character.getY(), (float)(character.getX()+a2), (float)(character.getY()+b2));
