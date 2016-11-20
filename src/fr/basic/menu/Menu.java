@@ -15,29 +15,40 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.basic.World;
 
-public class Menu extends BasicGameState {
-	
+public abstract class Menu extends BasicGameState {
+	public static int ID ;
 	protected int selection;
 	static TrueTypeFont font1;
-	public static int ID;
 	protected int nbrOptions;
 	protected GameContainer container;
 	protected StateBasedGame game;
 	protected String nom;
 	protected String[] items;
+	private int renderX, renderY;
 	
 	public Menu(){
-		//Ne pas utiliser si possible. Utilisez celui d'en dessous.
+		//Ne pas utiliser si possible. Utilisez ceux d'en dessous.
 		selection = 0;
-		ID = -1;
 		items = new String[1];
 		items[0] = "Menu de base.";
+		renderX = 550;
+		renderY = 320;
 	}
 	
 	public Menu(int itemCount){
 		selection = 0;
 		items = new String[itemCount];
 		nbrOptions = itemCount;
+		renderX = 550;
+		renderY = 320;
+	}
+	
+	public Menu(int itemCount,int startingX, int startingY){
+		selection = 0;
+		items = new String[itemCount];
+		nbrOptions = itemCount;
+		renderX = startingX;
+		renderY = startingY;
 	}
 	
 	public String[] getItems() {
@@ -49,7 +60,6 @@ public class Menu extends BasicGameState {
 		this.container = container;
 		container.setShowFPS(true);
 		this.game = game;
-
 		Font titre1Font = new Font("Kalinga", Font.BOLD, 12);
 		font1 = new TrueTypeFont(titre1Font, false);
 
@@ -63,14 +73,14 @@ public class Menu extends BasicGameState {
 	
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
-		g.drawString(this.nom, 550, 320);
+		g.drawString(this.nom, renderX, renderY);
 
 		g.setColor(Color.white);
 
 		for (int i = 0; i < nbrOptions; i++) {
-			g.drawString(this.items[i], 560, 360 + 30 * i);
+			g.drawString(this.items[i], renderX+10, renderY+40 + 30 * i);
 		}
-		g.drawString(">>", 540, 360 + 30 * selection);
+		g.drawString(">>", renderX - 10, renderY+40 + 30 * selection);
 		
 	}
 	
@@ -101,13 +111,9 @@ public class Menu extends BasicGameState {
 		switch (selection) {
 		default:
 			break;
-		 
 		}
 	}
-	
-	@Override
-	public int getID() {
-		return ID;
-	}
 
+	@Override
+	public abstract int getID();
 }
