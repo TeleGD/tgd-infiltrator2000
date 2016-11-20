@@ -99,24 +99,23 @@ public class Player extends Character {
 		if ( !collision ){
 			this.moveX(arg3);
 			this.moveY(arg3);
-		} else {if ( this.getSpeedY() != 0 ){
-			while ( collision ){
+		} else {
+			while (collision){
+			if ( this.getSpeedY() != 0 ){
 				collision = false;
 				this.setY(this.getY()-this.getSpeedY());
 				for ( Wall w : walls ){
 					collision =collision || Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
-				}
 			}}
 			
-			if ( this.getSpeedX() != 0 ){
-				while ( collision ){
+			if ( this.getSpeedX() != 0 && collision ){
 					collision = false;
 					this.setX(this.getX()-this.getSpeedX());
 					for ( Wall w : walls ){
 						collision =collision || Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
 					}
-				}
 			} 
+			}
 			/* else if ( this.getSpeedX() != 0 && this.getSpeedY() != 0 ){
 				while ( collision ){
 					collision = false;

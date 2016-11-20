@@ -1,5 +1,7 @@
 package fr.basic.menu;
 
+import java.io.IOException;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,12 +14,12 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import fr.basic.World;
 
 public class MenuFin extends Menu {
-
+	public static int ID = 2;
 	public MenuFin(){
 		super(3);
-		ID = 2;
+		
 		selection = 1;
-		items[0] = "Merci d'avoir joue! Score final : AJOUTER LE SCORE ICI";
+		items[0] = "Merci d'avoir joue! Score final : "+World.getScore();
 		items[1] = "Scores";
 		items[2] = "Quitter";
 		nom = "Menu de Fin";
@@ -28,7 +30,6 @@ public class MenuFin extends Menu {
 		g.drawString(this.nom, 550, 320);
 
 		g.setColor(Color.white);
-		
 		g.drawString(this.items[0], 400, 360);
 		
 		for (int i = 1; i < nbrOptions; i++) {
@@ -67,8 +68,12 @@ public class MenuFin extends Menu {
 		case 0:
 			break;
 		case 1:
-			game.enterState(MenuScores.ID, new FadeOutTransition(),
-					new FadeInTransition());
+			try {
+				MenuScores.addScore(World.getScore());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			game.enterState(MenuScores.ID, new FadeOutTransition(),	new FadeInTransition());
 			break;
 		case 2:
 			this.container.exit();
@@ -76,6 +81,12 @@ public class MenuFin extends Menu {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public int getID() {
+		// TODO Auto-generated method stub
+		return ID;
 	}
 	
 }

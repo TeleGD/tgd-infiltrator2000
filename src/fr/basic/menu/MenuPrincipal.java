@@ -15,11 +15,10 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import fr.basic.World;
 
 public class MenuPrincipal extends Menu {
+	public static int ID = 1;
 	
 	public MenuPrincipal(){
 		super(2);
-		ID = 1;
-		
 		items[0] = "Jouer";
 		items[1] = "Quitter";
 		nom = "Menu Principal";
@@ -28,10 +27,14 @@ public class MenuPrincipal extends Menu {
 	@Override
 	public void keyPressed(int key, char c) {
 		if(key == Input.KEY_ESCAPE){
-			game.enterState(MenuFin.ID, new FadeOutTransition(),
-					new FadeInTransition());
+			game.enterState(MenuFin.ID, new FadeOutTransition(), new FadeInTransition());
 		}
 		super.keyPressed(key, c);
+	}
+	
+	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
+		System.out.println("aaa");
+		super.render(arg0, arg1, g);
 	}
 	
 	@Override
@@ -39,8 +42,7 @@ public class MenuPrincipal extends Menu {
 		switch (selection) {
 		case 0:
 			World.reset();
-			game.enterState(World.ID, new FadeOutTransition(),
-					new FadeInTransition());
+			game.enterState(World.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 
 		case 1:
@@ -49,5 +51,11 @@ public class MenuPrincipal extends Menu {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public int getID() {
+		// TODO Auto-generated method stub
+		return ID;
 	}
 }
