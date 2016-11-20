@@ -26,7 +26,7 @@ public abstract class Character extends MovableCircle{
 		this.radius = radius;
 		this.view = view;
 		this.radius = radius;
-		area= new Areabis(this.x,this.y,this);
+		area= new Areabis(this);
 	}
 
 
