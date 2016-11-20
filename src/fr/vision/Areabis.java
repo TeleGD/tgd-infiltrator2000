@@ -35,21 +35,21 @@ public class Areabis extends Polygon {
 
 		
 		this.addPoint((float)x,(float)y);
-		for (int j = 0; j < 2; j++) {
+		for (int j = 0; j < 16; j++) {
 			this.x = character.getX();
 			this.y = character.getY();
-
+			System.out.println(a1+"   "+b1);
 			stop = false;
 			while (!stop) {
-				this.x += a1 + (a2 - a1)/2 * j;
-				this.y += b1 + (b2 - b1)/2 * j;
+				this.x += a1 + (a2 - a1)/16 * j;
+				this.y += b1 + (b2 - b1)/16 * j;
 				l = new ArrayList<Double>();
 				l.add(x);
 				l.add(y);
-				stop=true;
-				/*for (Wall w : fr.basic.World.getWalls()) {
-					stop=w.isInside(x,y);
-				}*/
+				for (Wall w : fr.basic.World.getWalls()) {
+					//2267
+					stop=!w.isInside(x,y);
+				}
 			}
 			pris = true;
 			for (int i = 0; i < this.getPoints().length - 1; i++) {
@@ -77,10 +77,7 @@ public class Areabis extends Polygon {
 
 	public void render(GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException {
 		arg3.setColor(Color.red);
-		arg3.drawLine((float) character.getX(), (float) character.getY(), (float) (character.getX() + a1),
-				(float) (character.getY() + b1));
-		arg3.drawLine((float) character.getX(), (float) character.getY(), (float) (character.getX() + a2),
-				(float) (character.getY() + b2));
+		arg3.draw(this);
 	}
 
 	public void chooseDir() {
