@@ -31,6 +31,7 @@ public class World extends BasicGameState{
 	private static ArrayList<Item> items;
 	private static ArrayList<Projectile> projectiles;
 	private static ArrayList<Area> areas;
+	private ArrayList<Integer> scores;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
