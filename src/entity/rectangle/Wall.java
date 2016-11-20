@@ -41,8 +41,13 @@ public abstract class Wall extends EntityRectangle {
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
 		arg3.setColor(Color.red);
 		arg3.fillRect((float)x, (float)y, (float)width, (float)height);
-		
-		
-		
+	}
+	
+	public boolean isInside(double x,double y){
+		if(x>this.x+this.width) return false;
+		if(x<this.x) return false;
+		if(y>this.y+this.height) return false;
+		if(y<this.y) return false;
+		return true;
 	}
 }
