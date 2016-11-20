@@ -14,6 +14,7 @@ import entity.circle.Item;
 import entity.movable.circle.Guard;
 import entity.movable.circle.Player;
 import entity.movable.Projectile;
+import entity.rectangle.FrontalWall;
 import entity.rectangle.LateralWall;
 import entity.rectangle.Wall;
 import fr.util.Chrono;
@@ -31,6 +32,7 @@ public class World extends BasicGameState{
 	private static ArrayList<Item> items;
 	private static ArrayList<Projectile> projectiles;
 	private static ArrayList<Area> areas;
+	private ArrayList<Integer> scores;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
@@ -42,6 +44,7 @@ public class World extends BasicGameState{
 		chrono = new Chrono();
 		chrono.start();
 		walls.add(new LateralWall(700,200,15,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
+		walls.add(new FrontalWall(668,200,5,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
 		guards.add(new Guard(500,100,0.5,0,15,50,null,this));
 		player = new Player(500., 300., 0., 0.,30,60, this);
 		areas.add(new Area(player, 100));
