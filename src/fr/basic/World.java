@@ -85,7 +85,7 @@ public class World extends BasicGameState{
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		if(chrono.getTime() > 2000) guards.get(0).setEnVie(false);
+		//if(chrono.getTime() > 2000) guards.get(0).setEnVie(false);
 		
 		for(Projectile p : projectiles){
 			p.update(arg0, arg1, arg2);
