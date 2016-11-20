@@ -26,11 +26,11 @@ public class World extends BasicGameState{
 	private Chrono chrono;
 	private Player player;
 	private StateBasedGame game;
-	private ArrayList<Wall> walls;
-	private ArrayList<Guard> guards;
-	private ArrayList<Item> items;
-	private ArrayList<Projectile> projectiles;
-	private ArrayList<Area> areas;
+	public static ArrayList<Wall> walls;
+	public static ArrayList<Guard> guards;
+	public static ArrayList<Item> items;
+	public static ArrayList<Projectile> projectiles;
+	public static ArrayList<Area> areas;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
@@ -133,23 +133,23 @@ public class World extends BasicGameState{
 		areas.add(a);
 	}
 	
-	public ArrayList<Wall> getWalls(){
+	public static ArrayList<Wall> getWalls(){
 		return walls;
 	}
 	
-	public ArrayList<Guard> getGuards(){
+	public static ArrayList<Guard> getGuards(){
 		return guards;
 	}
 	
-	public ArrayList<Item> getItems(){
+	public static ArrayList<Item> getItems(){
 		return items;
 	}
 	
-	public ArrayList<Area> getAreas() {
+	public static ArrayList<Area> getAreas() {
 		return areas;
 	}
 	
-	public ArrayList<Entity> getEntities(){
+	public static ArrayList<Entity> getEntities(){
 		ArrayList<Entity> tmp = new ArrayList<Entity>();
 		tmp.addAll(walls);
 		tmp.addAll(guards);
