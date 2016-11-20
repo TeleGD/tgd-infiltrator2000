@@ -113,23 +113,23 @@ public class World extends BasicGameState{
 		player.keyReleased(key,c);
 	}
 	
-	public void addWall(Wall w){
+	public static void addWall(Wall w){
 		walls.add(w);
 	}
 	
-	public void addGuard(Guard g){
+	public static void addGuard(Guard g){
 		guards.add(g);
 	}
 	
-	public void addItem(Item i){
+	public static void addItem(Item i){
 		items.add(i);
 	}
 	
-	public void addProjectiles(Projectile p){
+	public static void addProjectiles(Projectile p){
 		projectiles.add(p);
 	}
 	
-	public void addArea(Area a) {
+	public static void addArea(Area a) {
 		areas.add(a);
 	}
 	
