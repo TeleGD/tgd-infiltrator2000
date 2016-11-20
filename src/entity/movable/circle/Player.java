@@ -59,6 +59,7 @@ public class Player extends Character {
 	}
 	
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
+		super.update(arg1, arg2, arg3);
 		this.walls = this.getWorld().getWalls();
 		for ( Wall w : walls ){
 			collision = Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
@@ -92,8 +93,10 @@ public class Player extends Character {
 	}
 	
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
+		
 		arg3.setColor(Color.cyan);
 		arg3.fillOval((float)(this.x-radius), (float)(this.y-radius), (float)(2*radius), (float)(2*radius));
+		super.render(arg1, arg2, arg3);
 	}
 	
 	public void keyReleased(int key, char c) {

@@ -10,20 +10,17 @@ import org.newdawn.slick.state.StateBasedGame;
 import entity.Entity;
 import fr.interfaces.Rectangle;
 
-public class Wall extends EntityRectangle {
+public abstract class Wall extends EntityRectangle {
+
+	public Wall(double x, double y, double width, double height) {
+		super(x, y, width, height);
+	}
 
 	protected Image img,img2;
 
-	/*public Wall(double x, double y, Image img) {
-		super(x, y);
-		this.img = img;
-	}*/
 	
-	public Wall (double x, double y,int nbrTuilesX, int nbrTuilesY, Image tuileTop, Image tuile){
-		super(x,y,(double)32*nbrTuilesX,(double)32*nbrTuilesY);
-		this.img = tuileTop;
-		this.img2=tuile;
-	}
+	
+	
 
 	//----------------------------Get---------------
 	
@@ -45,9 +42,7 @@ public class Wall extends EntityRectangle {
 		arg3.setColor(Color.red);
 		arg3.fillRect((float)x, (float)y, (float)width, (float)height);
 		
-		for(int i=0;i<width/32;i++){arg3.drawImage(img2, (float)x+i*32, (float)(y+height-32));}
-		for(int i=0;i<width/32;i++){arg3.drawImage(img2, (float)x+i*32, (float)(y+height-64));}
-		for (int i = 2;i<height/32;i++){arg3.drawImage(img, (float)x, (float)(-32*i+y+height-32));}
+		
 		
 	}
 }

@@ -10,50 +10,49 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import fr.basic.World;
 import fr.vision.Area;
+import fr.vision.Areabis;
 
 public class Guard extends Character {
-	protected Area visualField;
+	protected Areabis visualField;
 	
-	public Guard(double x, double y, double sx, double sy, double radius, double view, /*Image im,*/ Area visuFie, World world) {
+	public Guard(double x, double y, double sx, double sy, double radius, double view, /*Image im,*/ Areabis visuFie, World world) {
 		super(x, y, sx, sy,radius,view, null,world);
-		//this.visualField=visuFie;
+		this.visualField=visuFie;
 	}
 
 	//------------------------------Get--------------
 	
-	public Area getVisualField() {
+	public Areabis getVisualField() {
 		return visualField;
 	}
 
 	//------------------------------Set--------------
 	
-	public void setVisualField(Area visualField) {
+	public void setVisualField(Areabis visualField) {
 		this.visualField = visualField;
 	}
 	
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
-		
+		super.update(arg1, arg2, arg3);
+		horizontalMove();
+		moveX(arg3);
 	}
 	
 	public void render(GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException {
+		super.render(arg1, arg2, arg3);
 		arg3.setColor(Color.magenta);
-		arg3.fillOval((float)100, (float)100, (float)(2*100), (float)(2*100));
+		arg3.fillOval((float)(this.x-radius), (float)(y-radius), (float)(2*radius), (float)(2*radius));
 	}
 	
-	public void movX(double x, double sx, double count, double bool, int delta){
-		if (bool == 1){
-			while (x<count){
-				moveX(delta);
-			}
-			bool=-1;
+	public void horizontalMove(){
+		if (this.x<=100){
+			this.speedX=0.4;
 		}
-		else{
-			while (x>-count){
-				moveX(delta);
-			}
-			bool=1;
+		if (this.x>=1000){
+			this.speedX=-0.4;
 		}
 	}
+	
 	
 	
 

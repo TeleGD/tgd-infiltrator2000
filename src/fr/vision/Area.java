@@ -141,9 +141,10 @@ public class Area {
 		//System.out.println(character.getRadius());
 		//arg3.drawLine((float)(character.getX() - character.getRadius()), (float)(character.getY() - character.getRadius()), (float)(character.getX() - character.getRadius() + size * Math.sin( (Math.PI/180)*(character.getOrientation() + character.getFieldOfView() ) ) ), (float)(character.getY() - character.getRadius() + size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
 		//arg3.drawLine((float)(character.getX() - character.getRadius()), (float)(character.getY() - character.getRadius()), (float)(character.getX() - character.getRadius() + size * Math.sin( (Math.PI/180)*(character.getOrientation() + character.getFieldOfView() ) ) ), (float)(character.getY() - character.getRadius() - size * Math.sin( character.getOrientation() + character.getFieldOfView() ) ) );
-		if(character.getOrientation() == 0){
+		/*if(character.getOrientation() == 0){
 			
-		}
+		}*/
+	
 	}
 	
 	public int getSize() {
@@ -164,6 +165,7 @@ public class Area {
 	public ArrayList<Entity> getVisibleEntities() {
 		return visibleEntities;
 	}
+	
 
 	
 }

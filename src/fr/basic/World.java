@@ -14,6 +14,7 @@ import entity.circle.Item;
 import entity.movable.circle.Guard;
 import entity.movable.circle.Player;
 import entity.movable.Projectile;
+import entity.rectangle.LateralWall;
 import entity.rectangle.Wall;
 import fr.util.Chrono;
 import fr.vision.Area;
@@ -38,9 +39,10 @@ public class World extends BasicGameState{
 		walls = new ArrayList<Wall>();
 		items = new ArrayList<Item>();
 		projectiles = new ArrayList<Projectile>();
-		
-		walls.add(new Wall(1000,300,1,10,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
-		guards.add(new Guard(100,100,1,1,30,50,null,this));
+		chrono = new Chrono();
+		chrono.start();
+		walls.add(new LateralWall(700,200,15,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
+		guards.add(new Guard(500,100,0.5,0,15,50,null,this));
 		player = new Player(500., 300., 0., 0.,30,60, null, new ArrayList<Capacity>(),this);
 		areas.add(new Area(player, 100));
 	}
@@ -69,6 +71,7 @@ public class World extends BasicGameState{
 		for(Projectile p : projectiles){
 			p.render(arg0, arg1, arg2);
 		}
+		chrono.render(arg0, arg1, arg2);
 	}
 
 	@Override
@@ -90,6 +93,7 @@ public class World extends BasicGameState{
 		}
 		
 		player.update(arg0, arg1, arg2);
+		chrono.update(arg0, arg1, arg2);
 	}
 
 	@Override
