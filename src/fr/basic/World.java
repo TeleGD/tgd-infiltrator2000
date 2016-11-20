@@ -26,11 +26,11 @@ public class World extends BasicGameState{
 	private Chrono chrono;
 	private Player player;
 	private StateBasedGame game;
-	public static ArrayList<Wall> walls;
-	public static ArrayList<Guard> guards;
-	public static ArrayList<Item> items;
-	public static ArrayList<Projectile> projectiles;
-	public static ArrayList<Area> areas;
+	private static ArrayList<Wall> walls;
+	private static ArrayList<Guard> guards;
+	private static ArrayList<Item> items;
+	private static ArrayList<Projectile> projectiles;
+	private static ArrayList<Area> areas;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
