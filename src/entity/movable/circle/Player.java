@@ -64,33 +64,48 @@ public class Player extends Character {
 		super.update(arg1, arg2, arg3);
 		this.walls = this.getWorld().getWalls();
 		for ( Wall w : walls ){
-			collision = Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
+			if ( this.getSpeedX() != 0 && this.getSpeedY() == 0 ){
+				this.setX(this.getX()+this.getSpeedX());
+				collision = collision || Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
+			} else if ( this.getSpeedX() == 0 && this.getSpeedY() != 0 ){
+				this.setY(this.getY()+this.getSpeedY());
+				collision = collision || Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
+			} else if ( this.getSpeedX() != 0 && this.getSpeedY() != 0 ){
+				this.setY(this.getY()+this.getSpeedY());
+				this.setX(this.getX()+this.getSpeedX());
+				collision = collision || Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
+			} 
 		}
 		if ( !collision ){
 			this.moveX(arg3);
 			this.moveY(arg3);
 		} else {
-			if ( up ){
-				this.setSpeedY(speed);
-				this.moveY(arg3);
-				this.setSpeedY(0);
+			if ( this.getSpeedX() != 0 && this.getSpeedY() == 0 ){
+				while ( collision ){
+					collision = false;
+					this.setX(this.getX()-this.getSpeedX());
+					for ( Wall w : walls ){
+						collision =collision || Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
+					}
+				}
+			} else if ( this.getSpeedX() == 0 && this.getSpeedY() != 0 ){
+				while ( collision ){
+					collision = false;
+					this.setY(this.getY()-this.getSpeedY());
+					for ( Wall w : walls ){
+						collision =collision || Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
+					}
+				}
+			} else if ( this.getSpeedX() != 0 && this.getSpeedY() != 0 ){
+				while ( collision ){
+					collision = false;
+					this.setX(this.getX()-this.getSpeedX());
+					this.setY(this.getY()-this.getSpeedY());
+					for ( Wall w : walls ){
+						collision =collision || Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
+					}
+				}
 			}
-			if ( down ){
-				this.setSpeedY(-speed);
-				this.moveY(arg3);
-				this.setSpeedY(0);
-			}
-			if ( left ){
-				this.setSpeedX(speed);
-				this.moveX(arg3);
-				this.setSpeedX(0);
-			}
-			if ( right ){
-				this.setSpeedX(-speed);
-				this.moveX(arg3);
-				this.setSpeedX(0);
-			}
-			collision = false;
 		}
 	}
 	
