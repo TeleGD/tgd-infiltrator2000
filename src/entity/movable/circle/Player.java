@@ -18,32 +18,34 @@ import fr.util.Collisions;
 
 public class Player extends Character {
 
-	protected ArrayList<Capacity> inventaire;
+	protected ArrayList<Capacity> capacities;
 	protected ArrayList<Wall> walls;
 	protected double speed = 0.25;
 	protected boolean left,right,up,down,collision;
 	protected double newX,newY;
+	private Image inventory;
 	
-	public Player(double x, double y, double sx, double sy, double radius,double view, Image im, ArrayList<Capacity> inv, World world) {
-		super(x, y, sx, sy, radius,view, im,world);
-		this.inventaire=inv;
+	public Player(double x, double y, double sx, double sy, double radius,double view, World world) throws SlickException {
+		super(x, y, sx, sy, radius,view,world);
+		this.capacities=new ArrayList<Capacity>();
+		inventory = new Image("images/inventory.png");
 	}
 
 	//--------------------------Get-------------------
 	
-	public ArrayList<Capacity> getInventaire() {
-		return inventaire;
+	public ArrayList<Capacity> getcapacities() {
+		return capacities;
 	}
 
 	//-------------------------Set--------------------
 	
-	public void setInventaire(ArrayList<Capacity> inventaire) {
-		this.inventaire = inventaire;
+	public void setcapacities(ArrayList<Capacity> capacities) {
+		this.capacities = capacities;
 	}
 	
 	public void addCapacity(Capacity capacity){
-		if ( inventaire.size() < 6 ){
-			inventaire.add(capacity);
+		if ( capacities.size() < 6 ){
+			capacities.add(capacity);
 		} else {
 			System.out.println("Desole mais la 7eme capacite est pour T7 !");
 		}
@@ -97,6 +99,10 @@ public class Player extends Character {
 		arg3.setColor(Color.cyan);
 		arg3.fillOval((float)(this.x-radius), (float)(this.y-radius), (float)(2*radius), (float)(2*radius));
 		super.render(arg1, arg2, arg3);
+		arg3.drawImage(inventory, 0, 100);
+		for (int i=0;i<capacities.size();i++){
+			arg3.drawImage(capacities.get(i).getImage().getScaledCopy(2), 10, 110+50*i);
+		}
 	}
 	
 	public void keyReleased(int key, char c) {
@@ -148,33 +154,33 @@ public class Player extends Character {
 	public void keyPressed(int key, char c) {
 		switch (key) {
 		case Input.KEY_A:
-			if ( inventaire.size() > 0 ){
-				inventaire.get(0).action();
+			if ( capacities.size() > 0 ){
+				capacities.get(0).action();
 			}
 			break;
 		case Input.KEY_Z:
-			if ( inventaire.size() > 1 ){
-				inventaire.get(1).action();
+			if ( capacities.size() > 1 ){
+				capacities.get(1).action();
 			}
 			break;
 		case Input.KEY_E:
-			if ( inventaire.size() > 2 ){
-				inventaire.get(2).action();
+			if ( capacities.size() > 2 ){
+				capacities.get(2).action();
 			}
 			break;
 		case Input.KEY_Q:
-			if ( inventaire.size() > 3 ){
-				inventaire.get(3).action();
+			if ( capacities.size() > 3 ){
+				capacities.get(3).action();
 			}
 			break;
 		case Input.KEY_S:
-			if ( inventaire.size() > 4 ){
-				inventaire.get(4).action();
+			if ( capacities.size() > 4 ){
+				capacities.get(4).action();
 			}
 			break;
 		case Input.KEY_D:
-			if ( inventaire.size() > 5 ){
-				inventaire.get(5).action();
+			if ( capacities.size() > 5 ){
+				capacities.get(5).action();
 			}
 			break;
 		case Input.KEY_NUMPAD1:

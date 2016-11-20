@@ -20,9 +20,8 @@ public abstract class Character extends MovableCircle{
 	protected Areabis area;
 	
 	
-	public Character(double x, double y, double sx, double sy, double radius, double view,Image im,World world) {
+	public Character(double x, double y, double sx, double sy, double radius, double view,World world) {
 		super(x, y, sx, sy);
-		this.img=im;
 		this.world=world;
 		this.radius = radius;
 		this.view = view;

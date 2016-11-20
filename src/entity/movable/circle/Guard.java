@@ -16,7 +16,7 @@ public class Guard extends Character {
 	protected Areabis visualField;
 	
 	public Guard(double x, double y, double sx, double sy, double radius, double view, /*Image im,*/ Areabis visuFie, World world) {
-		super(x, y, sx, sy,radius,view, null,world);
+		super(x, y, sx, sy,radius,view, null);
 		this.visualField=visuFie;
 	}
 

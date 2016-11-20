@@ -43,8 +43,12 @@ public class World extends BasicGameState{
 		chrono.start();
 		walls.add(new LateralWall(700,200,15,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
 		guards.add(new Guard(500,100,0.5,0,15,50,null,this));
-		player = new Player(500., 300., 0., 0.,30,60, null, new ArrayList<Capacity>(),this);
+		player = new Player(500., 300., 0., 0.,30,60, this);
 		areas.add(new Area(player, 100));
+		
+		player.addCapacity(new Capacity("couteau"));
+		player.addCapacity(new Capacity("pistolet"));
+		player.addCapacity(new Capacity("radar"));
 	}
 
 	@Override
