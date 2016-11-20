@@ -24,7 +24,7 @@ public class World extends BasicGameState{
 
 	public static int ID = 0;
 	private Chrono chrono;
-	private Player player;
+	private static Player player;
 	private StateBasedGame game;
 	private static ArrayList<Wall> walls;
 	private static ArrayList<Guard> guards;
@@ -156,6 +156,10 @@ public class World extends BasicGameState{
 		tmp.addAll(items);
 		tmp.addAll(projectiles);
 		return tmp;
+	}
+	
+	public static Player getPlayer(){
+		return player;
 	}
 	
 	public static void reset(){
