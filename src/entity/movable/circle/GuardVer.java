@@ -12,13 +12,14 @@ import fr.vision.Areabis;
 public class GuardVer extends Guard{
 	public GuardVer(double x, double y, double sx, double sy, double radius, double view, /*Image im,*/ Areabis visuFie, World world) {
 		super(x, y, sx, sy,radius,view, null, world);
+		this.speedX=0;
 		this.visualField=visuFie;
 	}
 	public void verticalMove(){
 		if (this.y<=100){
 			this.speedY=0.4;
 		}
-		if (this.y>=1000){
+		if (this.y>=200){
 			this.speedY=-0.4;
 		}
 	}

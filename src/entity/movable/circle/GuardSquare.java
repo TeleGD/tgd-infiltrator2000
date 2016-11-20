@@ -16,20 +16,24 @@ public class GuardSquare extends Guard{
 	}
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
 		super.update(arg1, arg2, arg3);
-		if (this.y<=100 && this.x<=100){
+		if (this.y<=100){
 			this.speedX=0.4;
+			this.speedY=0;
 			moveX(arg3);
 		}
-		if (this.y<=100 && this.x>=200){
+		if (this.x>=200){
 			this.speedY=0.4;
+			this.speedX=0;
 			moveY(arg3);
 		}
-		if (this.y>=200 && this.x>=200){
+		if (this.y>=200){
 			this.speedX=-0.4;
+			this.speedY=0;
 			moveX(arg3);
 		}
-		if (this.y>=200 && this.x<=100){
+		if (this.x<=100){
 			this.speedY=-0.4;
+			this.speedX=0;
 			moveY(arg3);
 		}
 	}
