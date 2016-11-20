@@ -11,7 +11,7 @@ public class Door extends Wall {
 	protected boolean open;
 
 	public Door(double x, double y, Image img, boolean open) {
-		super(x, y, img);
+		super(x, y, 0, 0, img, img);
 		this.open = open;
 	}
 
