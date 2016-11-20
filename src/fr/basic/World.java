@@ -66,7 +66,8 @@ public class World extends BasicGameState{
 		}
 		
 		for(Guard g : guards){
-			g.render(arg0, arg1, arg2);
+			//NE PAS RENDER LES GARDES MORTS
+			if(g.isEnVie()) g.render(arg0, arg1, arg2);
 		}
 		
 		player.render(arg0, arg1, arg2);	
@@ -92,7 +93,9 @@ public class World extends BasicGameState{
 		}
 		
 		for(Guard g : guards){
-			g.update(arg0, arg1, arg2);
+			//NE PAS UPDATE LES GARDES MORTS
+			if(g.isEnVie()) g.update(arg0, arg1, arg2);
+			else guards.remove(guards.indexOf(g));
 		}
 		
 		for(Item i : items){
@@ -150,6 +153,10 @@ public class World extends BasicGameState{
 	
 	public static ArrayList<Area> getAreas() {
 		return areas;
+	}
+	
+	public static ArrayList<Projectile> getProjectiles(){
+		return projectiles;
 	}
 	
 	public static ArrayList<Entity> getEntities(){
