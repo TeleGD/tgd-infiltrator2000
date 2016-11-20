@@ -12,6 +12,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import entity.Entity;
 import entity.circle.Item;
 import entity.movable.circle.Guard;
+import entity.movable.circle.GuardHor;
+import entity.movable.circle.GuardSquare;
+import entity.movable.circle.GuardVer;
 import entity.movable.circle.Player;
 import entity.movable.circle.Projectile;
 import entity.rectangle.FrontalWall;
@@ -24,12 +27,12 @@ import fr.capacity.Capacity;
 public class World extends BasicGameState{
 
 	public static int ID = 0;
-	private Chrono chrono;
+	private static Chrono chrono;
 	private static Player player;
 	private StateBasedGame game;
 	private static ArrayList<Wall> walls;
 	private static ArrayList<Guard> guards;
-	private ArrayList<Integer> deadGuardsIndexes;
+	private ArrayList<Guard> deadGuards;
 	private static ArrayList<Item> items;
 	private static ArrayList<Projectile> projectiles;
 	private static ArrayList<Area> areas;
@@ -42,13 +45,20 @@ public class World extends BasicGameState{
 		walls = new ArrayList<Wall>();
 		items = new ArrayList<Item>();
 		projectiles = new ArrayList<Projectile>();
+		deadGuards = new ArrayList<Guard>();
+		
 		chrono = new Chrono();
 		chrono.start();
 		walls.add(new LateralWall(700,200,15,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
 		walls.add(new FrontalWall(668,200,5,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
 		guards.add(new Guard(500,100,0.5,0,15,50,null,this));
+		guards.add(new GuardSquare(800,100,0.5,0,15,50,null,this));
+		guards.add(new GuardVer(900,100,0.5,0,15,50,null,this));
+		guards.add(new GuardHor(1000,100,0.5,0,15,50,null,this));
 		player = new Player(500., 300., 0., 0.,30,60, this);
 		areas.add(new Area(player, 100));
+		
+		
 		
 		player.addCapacity(new Capacity("couteau"));
 		player.addCapacity(new Capacity("pistolet"));
@@ -85,7 +95,6 @@ public class World extends BasicGameState{
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		//if(chrono.getTime() > 2000) guards.get(0).setEnVie(false);
 		
 		for(Projectile p : projectiles){
 			p.update(arg0, arg1, arg2);
@@ -98,11 +107,18 @@ public class World extends BasicGameState{
 		for(Guard g : guards){
 			//NE PAS UPDATE LES GARDES MORTS
 			if(g.isEnVie()) g.update(arg0, arg1, arg2);
+			else deadGuards.add(g);
 		}
 		
 		for(Item i : items){
 			i.update(arg0, arg1, arg2);
 		}
+		
+		for(Guard g : deadGuards) {
+			guards.remove(g);
+		}
+
+		deadGuards.removeAll(deadGuards);
 		
 		player.update(arg0, arg1, arg2);
 		chrono.update(arg0, arg1, arg2);
@@ -175,7 +191,7 @@ public class World extends BasicGameState{
 	}
 	
 	public static void reset(){
-		
+		chrono.start();
 	}
 
 }
