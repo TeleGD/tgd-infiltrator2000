@@ -106,8 +106,8 @@ public class Player extends Character {
 				for ( Wall w : walls ){
 					collision =collision || Collisions.isCollision((MovableCircle)this,(EntityRectangle)w);
 				}
-			}
-		
+			}}
+			
 			if ( this.getSpeedX() != 0 ){
 				while ( collision ){
 					collision = false;
@@ -117,7 +117,7 @@ public class Player extends Character {
 					}
 				}
 			} 
-			}/* else if ( this.getSpeedX() != 0 && this.getSpeedY() != 0 ){
+			/* else if ( this.getSpeedX() != 0 && this.getSpeedY() != 0 ){
 				while ( collision ){
 					collision = false;
 					this.setX(this.getX()-this.getSpeedX());
@@ -144,6 +144,8 @@ public class Player extends Character {
 			arg3.drawImage(capacities.get(i).getImage().getScaledCopy(2), 10, 110+50*i);
 		}
 	}
+	
+	
 	
 	public void keyReleased(int key, char c) {
 		switch (key) {
