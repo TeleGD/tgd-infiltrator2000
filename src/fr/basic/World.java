@@ -16,12 +16,9 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.util.Chrono;
-<<<<<<< HEAD
-import fr.vision.Area;
+
 import fr.basic.menu.MenuFin;
 import fr.basic.menu.MenuScores;
-=======
->>>>>>> 699836a9d6b398fcb724ad6d9f316beb404aa203
 import fr.capacity.Capacity;
 import fr.circles.Guard;
 import fr.circles.GuardHor;
@@ -46,12 +43,8 @@ public class World extends BasicGameState{
 	private ArrayList<Guard> deadGuards;
 	private static ArrayList<Item> items;
 	private static ArrayList<Projectile> projectiles;
-<<<<<<< HEAD
-	private static ArrayList<Area> areas;
-	private Polygon poly;
-=======
 	private ArrayList<Integer> scores;
->>>>>>> 699836a9d6b398fcb724ad6d9f316beb404aa203
+
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
@@ -60,10 +53,7 @@ public class World extends BasicGameState{
 		items = new ArrayList<Item>();
 		projectiles = new ArrayList<Projectile>();
 		deadGuards = new ArrayList<Guard>();
-		poly = new Polygon();
-		poly.addPoint(0,0);
-		poly.addPoint(0, 10);
-		poly.addPoint(10, 0);
+
 		chrono = new Chrono();
 		chrono.start();
 		game = arg1;
@@ -75,21 +65,11 @@ public class World extends BasicGameState{
 		walls.add(new FrontalWall(0,0,23,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
 		walls.add(new FrontalWall(1280-32,0,23,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
 		
-<<<<<<< HEAD
-		guards.add(new Guard(500,100,0.5,0,15,50,null,this));
-		guards.add(new GuardSquare(800,100,0.5,0,15,50,null,this));
-		guards.add(new GuardVer(900,100,0.5,0,15,50,null,this));
-		guards.add(new GuardHor(1000,100,0.5,0,15,50,null,this));
-		
-		player = new Player(500., 300., 0., 0.,30,60, this);
-		areas.add(new Area(player, 100));
-=======
 		/*guards.add(new Guard(500,100,50));
 		guards.add(new GuardSquare(800,100,50));
 		guards.add(new GuardVer(900,100,50));*/
 		guards.add(new GuardHor(1000,100,40));
 		player = new Player(500, 300, 35);
->>>>>>> 699836a9d6b398fcb724ad6d9f316beb404aa203
 		
 		player.addCapacity(new Capacity("couteau"));
 		player.addCapacity(new Capacity("pistolet"));
@@ -108,9 +88,9 @@ public class World extends BasicGameState{
 		}
 		
 		for(Guard g : guards){
-			g.render(arg0, arg1, arg2);
+			//g.render(arg0, arg1, arg2);
 			//NE PAS RENDER LES GARDES MORTS
-			//if(!g.isDestructed()) g.render(arg0, arg1, arg2);
+			if(!g.isDestructed()) g.render(arg0, arg1, arg2);
 		}
 		
 		player.render(arg0, arg1, arg2);	
@@ -138,10 +118,10 @@ public class World extends BasicGameState{
 		}
 		
 		for(Guard g : guards){
-			g.update(arg0, arg1, arg2);
+			//g.update(arg0, arg1, arg2);
 			//NE PAS UPDATE LES GARDES MORTS
-			/*if(!g.isDestructed()) g.update(arg0, arg1, arg2);
-			else deadGuards.add(g);*/
+			if(!g.isDestructed()) g.update(arg0, arg1, arg2);
+			else deadGuards.add(g);
 		}
 		
 		for(Item i : items){
@@ -215,16 +195,6 @@ public class World extends BasicGameState{
 	public static ArrayList<Projectile> getProjectiles(){
 		return projectiles;
 	}
-	
-	//Pa sur que cette methode soit utilisée et vu qu'on a enlevé la classe entity elle n'est plus d'actualité
-	/*public static ArrayList<Entity> getEntities(){
-		ArrayList<Entity> tmp = new ArrayList<Entity>();
-		tmp.addAll(walls);
-		tmp.addAll(guards);
-		tmp.addAll(items);
-		tmp.addAll(projectiles);
-		return tmp;
-	}*/
 	
 	public static Player getPlayer(){
 		return player;

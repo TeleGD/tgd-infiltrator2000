@@ -19,7 +19,7 @@ public class MenuFin extends Menu {
 		super(3);
 		
 		selection = 1;
-		//items[0] = "Merci d'avoir joue! Score final : "+World.getScore();
+		items[0] = "Merci d'avoir joue! Score final : "+World.getScore();
 		items[1] = "Scores";
 		items[2] = "Quitter";
 		nom = "Menu de Fin";
