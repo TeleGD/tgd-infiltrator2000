@@ -10,7 +10,6 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.util.Chrono;
-import fr.vision.EnemyVisualField;
 import fr.capacity.Capacity;
 import fr.circles.Guard;
 import fr.circles.GuardHor;
@@ -34,12 +33,10 @@ public class World extends BasicGameState{
 	private ArrayList<Guard> deadGuards;
 	private static ArrayList<Item> items;
 	private static ArrayList<Projectile> projectiles;
-	private static ArrayList<EnemyVisualField> areas;
 	private ArrayList<Integer> scores;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		areas = new ArrayList<EnemyVisualField>();
 		guards = new ArrayList<Guard>();
 		walls = new ArrayList<Wall>();
 		items = new ArrayList<Item>();
@@ -159,9 +156,6 @@ public class World extends BasicGameState{
 		projectiles.add(p);
 	}
 	
-	public static void addArea(EnemyVisualField a) {
-		areas.add(a);
-	}
 	
 	public static ArrayList<Wall> getWalls(){
 		return walls;
@@ -175,9 +169,6 @@ public class World extends BasicGameState{
 		return items;
 	}
 	
-	public static ArrayList<EnemyVisualField> getAreas() {
-		return areas;
-	}
 	
 	public static ArrayList<Projectile> getProjectiles(){
 		return projectiles;
