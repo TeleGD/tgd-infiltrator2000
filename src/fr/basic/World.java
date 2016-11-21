@@ -1,13 +1,19 @@
 package fr.basic;
 
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import entity.Entity;
 import entity.circle.Item;
@@ -22,12 +28,15 @@ import entity.rectangle.LateralWall;
 import entity.rectangle.Wall;
 import fr.util.Chrono;
 import fr.vision.Area;
+import fr.basic.menu.MenuFin;
+import fr.basic.menu.MenuScores;
 import fr.capacity.Capacity;
 
 public class World extends BasicGameState{
 
 	public static int ID = 0;
-	private static Chrono chrono;
+	
+	private static Chrono chrono = new Chrono();
 	private static Player player;
 	private StateBasedGame game;
 	private static ArrayList<Wall> walls;
@@ -36,7 +45,7 @@ public class World extends BasicGameState{
 	private static ArrayList<Item> items;
 	private static ArrayList<Projectile> projectiles;
 	private static ArrayList<Area> areas;
-	private ArrayList<Integer> scores;
+	private Polygon poly;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
@@ -46,9 +55,14 @@ public class World extends BasicGameState{
 		items = new ArrayList<Item>();
 		projectiles = new ArrayList<Projectile>();
 		deadGuards = new ArrayList<Guard>();
-		
+		poly = new Polygon();
+		poly.addPoint(0,0);
+		poly.addPoint(0, 10);
+		poly.addPoint(10, 0);
 		chrono = new Chrono();
 		chrono.start();
+		game = arg1;
+		
 		walls.add(new LateralWall(700,200,15,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
 		walls.add(new FrontalWall(668,200,5,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
 		walls.add(new LateralWall(0,0,40,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
@@ -60,10 +74,9 @@ public class World extends BasicGameState{
 		guards.add(new GuardSquare(800,100,0.5,0,15,50,null,this));
 		guards.add(new GuardVer(900,100,0.5,0,15,50,null,this));
 		guards.add(new GuardHor(1000,100,0.5,0,15,50,null,this));
+		
 		player = new Player(500., 300., 0., 0.,30,60, this);
 		areas.add(new Area(player, 100));
-		
-		
 		
 		player.addCapacity(new Capacity("couteau"));
 		player.addCapacity(new Capacity("pistolet"));
@@ -134,8 +147,19 @@ public class World extends BasicGameState{
 		return ID;
 	}
 	
+	public static long getScore(){
+		return chrono.getTime();
+	}
+	
 	public void keyPressed(int key, char c){
-		player.keyPressed(key,c);
+		switch(key){
+		case Input.KEY_ESCAPE:
+			game.enterState(MenuFin.ID, new FadeOutTransition(), new FadeInTransition());
+			break;
+		default:
+			player.keyPressed(key,c);
+			break;
+		}
 	}
 	
 	public void keyReleased(int key, char c){
