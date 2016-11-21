@@ -33,7 +33,6 @@ public class MenuPrincipal extends Menu {
 	}
 	
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
-		System.out.println("aaa");
 		super.render(arg0, arg1, g);
 	}
 	

@@ -1,4 +1,4 @@
-package entity.movable.circle;
+package fr.circles;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -7,28 +7,38 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.basic.World;
-import fr.vision.Areabis;
 
-public class GuardHor extends Guard{
-	public GuardHor(double x, double y, double sx, double sy, double radius, double view, /*Image im,*/ Areabis visuFie, World world) {
-		super(x, y, sx, sy,radius,view, null, world);
-		this.visualField=visuFie;
-	}
-	public void horizontalMove(){
-		if (this.x<=100){
-			this.speedX=0.4;
-		}
-		if (this.x>=1000){
-			this.speedX=-0.4;
-		}
+public class GuardSquare extends Guard{
+	public GuardSquare(float x, float y,float radius) {
+		super(x, y, radius);
+		this.speedX=0;
+		//this.visualField=visuFie;
 	}
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
 		super.update(arg1, arg2, arg3);
-		horizontalMove();
-		moveX(arg3);
+		if (this.y<=100){
+			this.speedX=(float) 0.4;
+			this.speedY=0;
+			moveX(arg3);
+		}
+		if (this.x>=200){
+			this.speedY=(float) 0.4;
+			this.speedX=0;
+			moveY(arg3);
+		}
+		if (this.y>=200){
+			this.speedX=(float) -0.4;
+			this.speedY=0;
+			moveX(arg3);
+		}
+		if (this.x<=100){
+			this.speedY=(float) -0.4;
+			this.speedX=0;
+			moveY(arg3);
+		}
 	}
 	
-	public Areabis getVisualField() {
+	/*public Areabis getVisualField() {
 		return visualField;
 	}
 
@@ -36,11 +46,11 @@ public class GuardHor extends Guard{
 	
 	public void setVisualField(Areabis visualField) {
 		this.visualField = visualField;
-	}
+	}*/
 	
 	public void render(GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException {
 		super.render(arg1, arg2, arg3);
 		arg3.setColor(Color.magenta);
-		arg3.fillOval((float)(this.x-radius), (float)(y-radius), (float)(2*radius), (float)(2*radius));
+		arg3.fill(this);
 	}
 }

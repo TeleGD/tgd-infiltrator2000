@@ -1,4 +1,4 @@
-package entity.rectangle;
+package fr.rectangles;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

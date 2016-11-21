@@ -1,115 +1,84 @@
 package fr.util;
+
 import java.util.ArrayList;
 
-import entity.circle.EntityCircle;
-import entity.movable.circle.MovableCircle;
-import entity.movable.rectangle.MovableRectangle;
-import entity.rectangle.EntityRectangle;
+import org.newdawn.slick.geom.Point;
+import org.newdawn.slick.geom.Polygon;
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
+
+import fr.circles.Movable;
+import fr.circles.Player;
+import fr.rectangles.Wall;
 
 public class Collisions {
+
+	private static float x1;//ceux de s2
+	private static float x2;
+	private static float y1;
+	private static float y2;
+	private static float x3,x4,y3,y4;//ceux du prolongemement de s2 
+	private static float x,y;//centre s2
+	private static float[] f,g;
+	private static ArrayList<Polygon> polys; 
 	
-	//Collisions rectangle avec rectangle
-	public static boolean isCollision(MovableRectangle h1,MovableRectangle h2){
-		return ((h1.getX()+h1.getWidth()>h2.getX() && h1.getX()<h2.getX()+h2.getWidth())&&((h1.getY()+h1.getSpeedY()+h1.getHeight()>=h2.getY()+h2.getSpeedY()) && (h1.getY()+h1.getSpeedY()<=h2.getY()+h2.getSpeedY()+h2.getHeight())));
-	}
-	
-	public static boolean isCollision(EntityRectangle h1, EntityRectangle h2){
-		return ((h1.getX()+h1.getWidth()>h2.getX() && h1.getX()<h2.getX()+h2.getWidth())&&((h1.getY()+h1.getHeight()>=h2.getY()) && (h1.getY()<=h2.getY()+h2.getHeight())));
-	}
-	
-	public static boolean isCollision(EntityRectangle h1, MovableRectangle h2){
-		return ((h1.getX()+h1.getWidth()>h2.getX() && h1.getX()<h2.getX()+h2.getWidth())&&((h1.getY()+h1.getHeight()>=h2.getY()+h2.getSpeedY()) && (h1.getY()<=h2.getY()+h2.getSpeedY()+h2.getHeight())));
-	}
-	
-	public static boolean isCollision(MovableRectangle h1, EntityRectangle h2){
-		return isCollision(h2, h1);
-	}
-	
-	//collisions cercle et cercle
-	//TODO la collision cercle/cercle qui bougent est simplifie, si ca bouge trop vite, ca va bugger
-	
-	public static boolean isCollision(EntityCircle h1, EntityCircle h2){
-		double dx=h1.getX()-h2.getX();
-		double dy=h1.getY()-h2.getY();
-		return dx*dx+dy*dy<((h1.getRadius()+h2.getRadius())*(h1.getRadius()+h2.getRadius()));
-	}
-	
-	public static boolean isCollision(EntityCircle h1, MovableCircle h2){
-		double dx=h1.getX()-h2.getX()+h2.getSpeedX();
-		double dy=h1.getY()-h2.getY()+h2.getSpeedY();
-		return dx*dx+dy*dy<((h1.getRadius()+h2.getRadius())*(h1.getRadius()+h2.getRadius()));
-	}
-	
-	public static boolean isCollision(MovableCircle h1, EntityCircle h2){
-		return isCollision(h2,h1);
-	}
-	
-	public static boolean isCollision(MovableCircle h1, MovableCircle h2){
-		double dx=h1.getX()+h1.getSpeedX()-h2.getX()+h2.getSpeedX();
-		double dy=h1.getY()+h1.getSpeedY()-h2.getY()+h2.getSpeedY();
-		return dx*dx+dy*dy<((h1.getRadius()+h2.getRadius())*(h1.getRadius()+h2.getRadius()));
-	}
-	
-	//collisions cercle et rectangle
-	
-	public static boolean isCollision(EntityCircle h1, EntityRectangle h2){
-		ArrayList<ArrayList<Double>> points=h2.pixelBordeer();
-		boolean  res=true;
-		for (int i = 0; i < points.size(); i++) {
-			double dx=h1.getX()-points.get(i).get(0);
-			double dy=h1.getY()-points.get(i).get(1);
-			res=res&&!(dx*dx+dy*dy<((h1.getRadius()))*(h1.getRadius()));
+	// mur: droite = 3,gauche =1, haut = 2, bas= 4, no col=0
+	public static int col(Player s1, Wall s2) {
+		if (s1.intersects(s2)) {//&& !s1.contains(s2)) return 0;
+		ArrayList<Polygon> shisme = shisme(s2);
+		if(shisme.get(1).contains(new Point(s1.getCenterX(),s1.getCenterY()))) return 2;
+		else if(shisme.get(2).contains(new Point(s1.getCenterX(),s1.getCenterY()))) return 3;
+		else if(shisme.get(3).contains(new Point(s1.getCenterX(),s1.getCenterY()))) return 4;
+		else if(shisme.get(0).contains(new Point(s1.getCenterX(),s1.getCenterY()))) return 1;
+		else return 0;
 		}
-		return !res;
+		return 0;
+	}
+
+	
+	//prolonge derriere le point 2 en partant du 1 (de 5001321648778 en x)
+	public static float[] prolongementDroite(float x1,float y1,float x2,float y2, double wow){
+		float a=(float) (x2+wow*Math.abs(x2-x1)/(x2-x1));
+		float b= (float) (y1+(x2+wow*Math.abs(x2-x1)/(x2-x1)-x1)*(y2-y1)/(x2-x1));
+		f = new float[]{a,b};
+		return f;
 	}
 	
-	public static boolean isCollision(EntityRectangle h1, EntityCircle h2){
-		return isCollision(h2,h1);
+	//pour séparer les rec et leur prolongement en 4 zones
+	public static ArrayList<Polygon>  shisme(Rectangle rec){
+		x1=rec.getMinX();
+		y1=rec.getMinY();
+		x2=rec.getMaxX();
+		y2=rec.getMaxY();
+		x=rec.getCenterX();
+		y=rec.getCenterY();
+		polys=new ArrayList<Polygon>();
+		//1
+		g=new float[]{x,y,prolongementDroite(x,y,x1,y1,600)[0],prolongementDroite(x,y,x1,y1,600)[1],prolongementDroite(x,y,x1,y2,600)[0],prolongementDroite(x,y,x1,y2,600)[1]};
+		polys.add(new Polygon(g));
+		
+		//2
+		g=new float[]{x,y,prolongementDroite(x,y,x1,y1,600)[0],prolongementDroite(x,y,x1,y1,600)[1],prolongementDroite(x,y,x2,y1,600)[0],prolongementDroite(x,y,x2,y1,600)[1]};
+		polys.add(new Polygon(g));
+		
+		//3
+		g=new float[]{x,y,prolongementDroite(x,y,x2,y1,600)[0],prolongementDroite(x,y,x2,y1,600)[1],prolongementDroite(x,y,x2,y2,600)[0],prolongementDroite(x,y,x2,y2,600)[1]};
+		polys.add(new Polygon(g));
+		
+		//4
+		g=new float[]{x,y,prolongementDroite(x,y,x2,y2,600)[0],prolongementDroite(x,y,x2,y2,600)[1],prolongementDroite(x,y,x1,y2,600)[0],prolongementDroite(x,y,x1,y2,600)[1]};
+		polys.add(new Polygon(g));
+		
+		return polys;
 	}
 	
-	public static boolean isCollision(EntityCircle h1, MovableRectangle h2){
-		ArrayList<ArrayList<Double>> points=h2.pixelBordeerWithSpeed();
-		boolean  res=true;
-		for (int i = 0; i < points.size(); i++) {
-			double dx=h1.getX()-points.get(i).get(0);
-			double dy=h1.getY()-points.get(i).get(1);
-			res=res&&!(dx*dx+dy*dy<((h1.getRadius()))*(h1.getRadius()));
-		}
-		return !res;
-	}
 	
-	public static boolean isCollision(MovableRectangle h1, EntityCircle h2){
-		return isCollision(h2,h1);
-	}
 	
-	public static boolean isCollision(MovableCircle h1, EntityRectangle h2){
-		ArrayList<ArrayList<Double>> points=h2.pixelBordeer();
-		boolean  res=true;
-		for (int i = 0; i < points.size(); i++) {
-			double dx=h1.getX()+h1.getSpeedX()-points.get(i).get(0);
-			double dy=h1.getY()+h1.getSpeedY()-points.get(i).get(1);
-			res=res&&!(dx*dx+dy*dy<((h1.getRadius()))*(h1.getRadius()));
-		}
-		return !res;
-	}
 	
-	public static boolean isCollision(EntityRectangle h1, MovableCircle h2){
-		return isCollision(h2, h1);
-	}
 	
-	public static boolean isCollision(MovableCircle h1, MovableRectangle h2){
-		ArrayList<ArrayList<Double>> points=h2.pixelBordeerWithSpeed();
-		boolean  res=true;
-		for (int i = 0; i < points.size(); i++) {
-			double dx=h1.getX()+h1.getSpeedX()-points.get(i).get(0);
-			double dy=h1.getY()+h1.getSpeedY()-points.get(i).get(1);
-			res=res&&!(dx*dx+dy*dy<((h1.getRadius()))*(h1.getRadius()));
-		}
-		return !res;
-	}
 	
-	public static boolean isCollision(MovableRectangle h1, MovableCircle h2){
-		return isCollision(h2, h1);
-	}
 	
+	public static float distance(float[] f1, float[] f2) {
+		return (float) Math.sqrt((f1[0] - f2[0]) * (f1[0] - f2[0]) + (f1[1] - f2[1]) * (f1[1] - f2[1]));
+	}
 }

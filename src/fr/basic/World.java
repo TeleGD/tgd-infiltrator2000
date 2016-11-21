@@ -15,22 +15,24 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-import entity.Entity;
-import entity.circle.Item;
-import entity.movable.circle.Guard;
-import entity.movable.circle.GuardHor;
-import entity.movable.circle.GuardSquare;
-import entity.movable.circle.GuardVer;
-import entity.movable.circle.Player;
-import entity.movable.circle.Projectile;
-import entity.rectangle.FrontalWall;
-import entity.rectangle.LateralWall;
-import entity.rectangle.Wall;
 import fr.util.Chrono;
+<<<<<<< HEAD
 import fr.vision.Area;
 import fr.basic.menu.MenuFin;
 import fr.basic.menu.MenuScores;
+=======
+>>>>>>> 699836a9d6b398fcb724ad6d9f316beb404aa203
 import fr.capacity.Capacity;
+import fr.circles.Guard;
+import fr.circles.GuardHor;
+import fr.circles.GuardSquare;
+import fr.circles.GuardVer;
+import fr.circles.Item;
+import fr.circles.Player;
+import fr.circles.Projectile;
+import fr.rectangles.FrontalWall;
+import fr.rectangles.LateralWall;
+import fr.rectangles.Wall;
 
 public class World extends BasicGameState{
 
@@ -44,12 +46,15 @@ public class World extends BasicGameState{
 	private ArrayList<Guard> deadGuards;
 	private static ArrayList<Item> items;
 	private static ArrayList<Projectile> projectiles;
+<<<<<<< HEAD
 	private static ArrayList<Area> areas;
 	private Polygon poly;
+=======
+	private ArrayList<Integer> scores;
+>>>>>>> 699836a9d6b398fcb724ad6d9f316beb404aa203
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		areas = new ArrayList<Area>();
 		guards = new ArrayList<Guard>();
 		walls = new ArrayList<Wall>();
 		items = new ArrayList<Item>();
@@ -65,11 +70,12 @@ public class World extends BasicGameState{
 		
 		walls.add(new LateralWall(700,200,15,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
 		walls.add(new FrontalWall(668,200,5,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
-		walls.add(new LateralWall(0,0,40,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
+		walls.add(new LateralWall(0,-64,40,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
 		walls.add(new LateralWall(0,720-32,40,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
 		walls.add(new FrontalWall(0,0,23,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
 		walls.add(new FrontalWall(1280-32,0,23,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
 		
+<<<<<<< HEAD
 		guards.add(new Guard(500,100,0.5,0,15,50,null,this));
 		guards.add(new GuardSquare(800,100,0.5,0,15,50,null,this));
 		guards.add(new GuardVer(900,100,0.5,0,15,50,null,this));
@@ -77,6 +83,13 @@ public class World extends BasicGameState{
 		
 		player = new Player(500., 300., 0., 0.,30,60, this);
 		areas.add(new Area(player, 100));
+=======
+		/*guards.add(new Guard(500,100,50));
+		guards.add(new GuardSquare(800,100,50));
+		guards.add(new GuardVer(900,100,50));*/
+		guards.add(new GuardHor(1000,100,40));
+		player = new Player(500, 300, 35);
+>>>>>>> 699836a9d6b398fcb724ad6d9f316beb404aa203
 		
 		player.addCapacity(new Capacity("couteau"));
 		player.addCapacity(new Capacity("pistolet"));
@@ -95,15 +108,17 @@ public class World extends BasicGameState{
 		}
 		
 		for(Guard g : guards){
+			g.render(arg0, arg1, arg2);
 			//NE PAS RENDER LES GARDES MORTS
-			if(g.isEnVie()) g.render(arg0, arg1, arg2);
+			//if(!g.isDestructed()) g.render(arg0, arg1, arg2);
 		}
 		
 		player.render(arg0, arg1, arg2);	
 		
-		for(Area a : areas){
+		//render par les guard
+		/*for(EnemyVisualField a : areas){
 			a.render(arg0, arg1, arg2);
-		}
+		}*/
 		
 		for(Projectile p : projectiles){
 			p.render(arg0, arg1, arg2);
@@ -123,9 +138,10 @@ public class World extends BasicGameState{
 		}
 		
 		for(Guard g : guards){
+			g.update(arg0, arg1, arg2);
 			//NE PAS UPDATE LES GARDES MORTS
-			if(g.isEnVie()) g.update(arg0, arg1, arg2);
-			else deadGuards.add(g);
+			/*if(!g.isDestructed()) g.update(arg0, arg1, arg2);
+			else deadGuards.add(g);*/
 		}
 		
 		for(Item i : items){
@@ -182,9 +198,6 @@ public class World extends BasicGameState{
 		projectiles.add(p);
 	}
 	
-	public static void addArea(Area a) {
-		areas.add(a);
-	}
 	
 	public static ArrayList<Wall> getWalls(){
 		return walls;
@@ -198,22 +211,20 @@ public class World extends BasicGameState{
 		return items;
 	}
 	
-	public static ArrayList<Area> getAreas() {
-		return areas;
-	}
 	
 	public static ArrayList<Projectile> getProjectiles(){
 		return projectiles;
 	}
 	
-	public static ArrayList<Entity> getEntities(){
+	//Pa sur que cette methode soit utilisée et vu qu'on a enlevé la classe entity elle n'est plus d'actualité
+	/*public static ArrayList<Entity> getEntities(){
 		ArrayList<Entity> tmp = new ArrayList<Entity>();
 		tmp.addAll(walls);
 		tmp.addAll(guards);
 		tmp.addAll(items);
 		tmp.addAll(projectiles);
 		return tmp;
-	}
+	}*/
 	
 	public static Player getPlayer(){
 		return player;
