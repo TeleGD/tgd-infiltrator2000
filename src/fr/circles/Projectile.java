@@ -1,4 +1,4 @@
-package entity.movable.circle;
+package fr.circles;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -7,7 +7,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import entity.movable.Movable;
 import fr.basic.World;
 import fr.util.Collisions;
 

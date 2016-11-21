@@ -1,4 +1,4 @@
-package entity.circle;
+package fr.circles;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

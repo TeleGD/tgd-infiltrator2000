@@ -1,4 +1,4 @@
-package entity.circle;
+package fr.circles;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,8 +11,8 @@ public class CapacityItem extends Item {
 
 	protected Capacity capacityGranted;
 
-	public CapacityItem(double x, double y) {
-		super(x, y);
+	public CapacityItem(float x, float y,float radius) {
+		super(x, y,radius);
 	}
 
 	//-------------------------Get-----------------

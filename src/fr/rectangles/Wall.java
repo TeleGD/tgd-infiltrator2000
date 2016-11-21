@@ -1,18 +1,17 @@
-package entity.rectangle;
+package fr.rectangles;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
-import entity.Entity;
-import fr.interfaces.Rectangle;
 
-public abstract class Wall extends EntityRectangle {
+public abstract class Wall extends Rectangle {
 
-	public Wall(double x, double y, double width, double height) {
+	public Wall(float x, float y, float width, float height) {
 		super(x, y, width, height);
 	}
 

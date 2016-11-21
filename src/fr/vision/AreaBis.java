@@ -8,10 +8,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.state.StateBasedGame;
-import entity.movable.circle.Character;
-import entity.rectangle.Wall;
 
-public class Areabis extends Polygon {
+public class AreaBis extends Polygon {
 
 	private double a1, b1, a2, b2; // sens trigo a1,b1 en avance sur a2,b2
 	private Character character;

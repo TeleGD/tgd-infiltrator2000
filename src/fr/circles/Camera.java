@@ -1,14 +1,14 @@
-package entity.circle;
+package fr.circles;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Item extends EntityCircle{
+public class Camera extends Movable {
 
-	public Item(double x, double y) {
-		super(x,y);
+	public Camera(double x, double y, double sx, double sy) {
+		super(x, y, sx, sy);
 	}
 
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
