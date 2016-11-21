@@ -12,7 +12,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import fr.basic.World;
 import fr.rectangles.Wall;
-import fr.vision.EnemyVisualField;
 
 public class Guard extends Character {
 	protected boolean destructed;
