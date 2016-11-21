@@ -28,6 +28,7 @@ import fr.circles.Item;
 import fr.circles.Player;
 import fr.circles.Projectile;
 import fr.rectangles.FrontalWall;
+import fr.rectangles.Ground;
 import fr.rectangles.LateralWall;
 import fr.rectangles.Wall;
 
@@ -44,7 +45,7 @@ public class World extends BasicGameState{
 	private static ArrayList<Item> items;
 	private static ArrayList<Projectile> projectiles;
 	private ArrayList<Integer> scores;
-
+	private ArrayList<Ground> ground;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
@@ -53,7 +54,8 @@ public class World extends BasicGameState{
 		items = new ArrayList<Item>();
 		projectiles = new ArrayList<Projectile>();
 		deadGuards = new ArrayList<Guard>();
-
+		ground = new ArrayList<Ground>();
+		
 		chrono = new Chrono();
 		chrono.start();
 		game = arg1;
@@ -74,10 +76,13 @@ public class World extends BasicGameState{
 		player.addCapacity(new Capacity("couteau"));
 		player.addCapacity(new Capacity("pistolet"));
 		player.addCapacity(new Capacity("radar"));
+		ground.add(new Ground(32,32,5,5));
 	}
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
+		
+		for (Ground g : ground) g.render(arg0, arg1, arg2);
 		
 		for(Wall w : walls){
 			w.render(arg0, arg1, arg2);
