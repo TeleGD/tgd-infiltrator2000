@@ -143,7 +143,6 @@ public class Guard extends Character {
 				av+=3;
 				for (Wall w : fr.basic.World.getWalls()){
 					if(w.contains(newPoint[0],newPoint[1])) {
-						System.out.println("bouh");
 						stop = true;
 					}
 				}
