@@ -60,17 +60,16 @@ public class World extends BasicGameState{
 		chrono.start();
 		game = arg1;
 		
-		walls.add(new LateralWall(700,200,15,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
-		walls.add(new FrontalWall(668,200,5,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
+		//walls.add(new LateralWall(700,200,15,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
+		//walls.add(new FrontalWall(668,200,5,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
 		walls.add(new LateralWall(0,-64,40,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
 		walls.add(new LateralWall(0,720-32,40,new Image("images/walls/lateralwall1up.png"),new Image("images/walls/wall1side.png")));
 		walls.add(new FrontalWall(0,0,23,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
 		walls.add(new FrontalWall(1280-32,0,23,new Image("images/walls/wall1up.png"),new Image("images/walls/wall1front.png")));
 		
-		/*guards.add(new Guard(500,100,50));
-		guards.add(new GuardSquare(800,100,50));
-		guards.add(new GuardVer(900,100,50));*/
-		guards.add(new GuardHor(1000,100,40));
+		guards.add(new GuardSquare(600,400,50));
+		guards.add(new GuardVer(300,400,50));
+		guards.add(new GuardHor(650,100,40));
 		player = new Player(500, 300, 35);
 		
 		player.addCapacity(new Capacity("couteau"));

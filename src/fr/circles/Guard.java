@@ -20,10 +20,12 @@ public class Guard extends Character {
 	protected float[] newPoint;
 	protected boolean stop;
 	protected float a,b;
-	
+	protected float xOrigin,yOrigin;
 	
 	public Guard(float centerX, float centerY, float radius) {
 		super(centerX, centerY, radius);
+		this.xOrigin=centerX;
+		this.yOrigin=centerY;
 		this.destructed = false;
 		this.visualField=new Polygon();
 		visualField.addPoint(centerX, centerY);
@@ -36,14 +38,6 @@ public class Guard extends Character {
 		return destructed;
 	}
 
-	/*
-	 * public Areabis getVisualField() { return visualField; }
-	 * 
-	 * //------------------------------Set--------------
-	 * 
-	 * public void setVisualField(Areabis visualField) { this.visualField =
-	 * visualField; }
-	 */
 
 	public void setDestructed(boolean enVie) {
 		this.destructed = !enVie;
@@ -55,7 +49,6 @@ public class Guard extends Character {
 
 	public void render(GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException {
 		arg3.setColor(Color.magenta);
-		//arg3.fill(this);
 		arg3.fillOval(x,y,2*radius,2*radius);
 		arg3.setColor(Color.white);
 		arg3.draw(visualField);

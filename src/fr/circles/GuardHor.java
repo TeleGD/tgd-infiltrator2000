@@ -11,15 +11,17 @@ import fr.basic.World;
 public class GuardHor extends Guard{
 	
 	
+	
+	
 	public GuardHor(float x, float y, float radius) {
 		super(x, y,radius);
 		this.speedX=(float)0.4;
 	}
 	public void horizontalMove(){
-		if (this.x<=100){
+		if (this.x<=xOrigin-500){
 			this.speedX=(float) 0.4;
 		}
-		if (this.x>=1000){
+		if (this.x>=xOrigin+500){
 			this.speedX=(float) -0.4;
 		}
 	}
