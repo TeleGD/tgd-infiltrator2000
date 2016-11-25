@@ -14,6 +14,8 @@ public class GuardSquare extends Guard {
 	
 	public GuardSquare(float x, float y, float radius) {
 		super(x, y, radius);
+		this.xOrigin=this.x+150;
+		this.yOrigin=this.y+150;
 		this.speedX = (float)0.4;
 		this.speedY=0;
 	}
@@ -31,31 +33,25 @@ public class GuardSquare extends Guard {
 	}
 
 	public void move() {
-		horizontalMove();
-		verticalMove();
-	}
-	
-	public void horizontalMove(){
-		if((x>=xOrigin+100)&&(this.speedY==0)){
+		if ((this.x>this.xOrigin+100) && (this.y>this.yOrigin+100)){
 			this.speedX=(float)-0.4;
+			this.speedY=0;
 		}
-		if((x<=xOrigin-100)&&(this.speedY==0)){
-			this.speedX=(float)0.4;
-		}
-		if(this.speedY!=0){
-			speedX=0;
-		}
-	}
-	
-	public void verticalMove(){
-		if((y>=yOrigin+100)&&(this.speedX==0)){
-			this.speedY=(float)-0.4;
-		}
-		if((y<=yOrigin-100)&&(this.speedX==0)){
+		
+		if ((this.x>this.xOrigin+100) && (this.y<this.yOrigin-100)){
+			this.speedX=(float)-0;
 			this.speedY=(float)0.4;
 		}
-		if(this.speedX!=0){
-			speedY=0;
+		
+		if ((this.x<this.xOrigin-100) && (this.y>this.yOrigin+100)){
+			this.speedX=(float)-0;
+			this.speedY=(float)-0.4;
+		}
+		if ((this.x<this.xOrigin-100) && (this.y<this.yOrigin-100)){
+			this.speedX=(float)0.4;
+			this.speedY=0;
 		}
 	}
+	
+	
 }
