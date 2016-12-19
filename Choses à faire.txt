@@ -1,0 +1,26 @@
+Bonjour, 
+Après avoir parlé avec certains qui voulaient continuer ce projet pendant les vacances je vous ai fais une liste des choses à faire.
+Je vous indique aussi la personne que j'aurai mis sur chaque tâche histoire d'éviter que l'on ne se marche dessus ce qui créerai des conflits (et c'est chiant...).
+
+Arthur:
+-déplacements spéciaux des gardes (quand ils ont entendu quelque chose ils doivent aller voir ce que c'est sans rentrer dans les murs)
+-mettre les capacités (voit l'interface capacity)
+
+Guillaume:
+-caméra
+-éditeur de niveau:
+	+ écrire dans un fichier un descriptif du niveau qui puisse être chargé. On peut voir un ".csv" avec position initiale du perso à la première ligne, ensuite les position des murs et leur taille(voir le constructeur), position des carrelages(créés par blocs de 32x32), position des ennemis et leur type
+	+ lire un fichier et charger le niveau décrit
+
+
+Nico:
+-déplacement du perso (que j'ai détruit...)
+-vérif collisions
+-mort du perso
+
+Autre choses à faire:
+-implémenter le reste des images
+-implémenter la fin du niveau avec écriture du temps dans un fichier, ne garder que les 5 meilleurs temps
+
+Veuillez mettre un "ok" à la fin de la description d'une tâche finie afin de montrer l'avancement.
+Attention à ne push que des versions qui marchent et où il n'y a pas de gros bug.

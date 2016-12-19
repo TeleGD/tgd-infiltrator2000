@@ -19,7 +19,8 @@ import fr.util.Chrono;
 
 import fr.basic.menu.MenuFin;
 import fr.basic.menu.MenuScores;
-import fr.capacity.Capacity;
+import fr.capacity.Capacity2;
+import fr.circles.EndLevel;
 import fr.circles.Guard;
 import fr.circles.GuardHor;
 import fr.circles.GuardSquare;
@@ -46,6 +47,7 @@ public class World extends BasicGameState{
 	private static ArrayList<Projectile> projectiles;
 	private ArrayList<Integer> scores;
 	private ArrayList<Ground> ground;
+	private EndLevel finish;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
@@ -72,10 +74,11 @@ public class World extends BasicGameState{
 		guards.add(new GuardHor(650,100,40));
 		player = new Player(500, 300, 35);
 		
-		player.addCapacity(new Capacity("couteau"));
-		player.addCapacity(new Capacity("pistolet"));
-		player.addCapacity(new Capacity("radar"));
+		player.addCapacity(new Capacity2("couteau"));
+		player.addCapacity(new Capacity2("pistolet"));
+		player.addCapacity(new Capacity2("radar"));
 		ground.add(new Ground(32,32,5,5));
+		this.finish=new EndLevel(800,400,3);
 	}
 
 	@Override
@@ -108,6 +111,7 @@ public class World extends BasicGameState{
 			p.render(arg0, arg1, arg2);
 		}
 		chrono.render(arg0, arg1, arg2);
+		this.finish.render(arg0, arg1, arg2);
 	}
 
 	@Override
@@ -140,6 +144,7 @@ public class World extends BasicGameState{
 		
 		player.update(arg0, arg1, arg2);
 		chrono.update(arg0, arg1, arg2);
+		this.finish.update(arg0, arg1, arg2);
 	}
 
 	@Override

@@ -11,12 +11,12 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.state.StateBasedGame;
 
-import fr.capacity.Capacity;
+import fr.capacity.Capacity2;
 import fr.rectangles.Wall;
 
 public class Player extends Character {
 
-	protected ArrayList<Capacity> capacities;
+	protected ArrayList<Capacity2> capacities;
 	protected ArrayList<Wall> walls;
 	protected double speed = 0.25;
 	private Image inventory;
@@ -26,23 +26,23 @@ public class Player extends Character {
 	
 	public Player(float centerPointX, float centerPointY, float radius) throws SlickException {
 		super(centerPointX, centerPointY, radius);
-		this.capacities=new ArrayList<Capacity>();
+		this.capacities=new ArrayList<Capacity2>();
 		inventory = new Image("images/inventory.png");
 	}
 
 	//--------------------------Get-------------------
 	
-	public ArrayList<Capacity> getcapacities() {
+	public ArrayList<Capacity2> getcapacities() {
 		return capacities;
 	}
 
 	//-------------------------Set--------------------
 	
-	public void setcapacities(ArrayList<Capacity> capacities) {
+	public void setcapacities(ArrayList<Capacity2> capacities) {
 		this.capacities = capacities;
 	}
 	
-	public void addCapacity(Capacity capacity){
+	public void addCapacity(Capacity2 capacity){
 		if ( capacities.size() < 6 ){
 			capacities.add(capacity);
 		} else {
@@ -50,7 +50,7 @@ public class Player extends Character {
 		}
 	}
 	
-	public  void deleteCapacity(Capacity capacity){
+	public  void deleteCapacity(Capacity2 capacity){
 		int i = 0;
 		boolean done = false;
 		while (i < capacities.size() || !done ){
