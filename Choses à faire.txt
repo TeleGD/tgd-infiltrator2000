@@ -14,7 +14,7 @@ Guillaume:
 
 
 Nico:
--déplacement du perso (que j'ai détruit...)
+-déplacement du perso (que j'ai détruit...) OK
 -vérif collisions
 -mort du perso
 
