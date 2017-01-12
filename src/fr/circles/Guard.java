@@ -1,5 +1,7 @@
 package fr.circles;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,6 +13,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.basic.World;
+import fr.main.Game;
 import fr.rectangles.Wall;
 
 public class Guard extends Character {
@@ -60,6 +63,28 @@ public class Guard extends Character {
 		}
 		if (this.x >= 1000) {
 			this.speedX = (float) -0.4;
+		}
+	}
+	
+	public void horizontalMove(float dir){
+		while(this.x != dir){
+			if(this.x < dir){
+				this.speedX = (float) 0.4;
+			}
+			else{
+				this.speedX = (float) -0.4;
+			}
+		}
+	}
+	
+	public void verticalMove(float dir){
+		while(this.y != dir){
+			if(this.y < dir){
+				this.speedY = (float) 0.4;
+			}
+			else{
+				this.speedY = (float) -0.4;
+			}
 		}
 	}
 
@@ -147,4 +172,139 @@ public class Guard extends Character {
 		
 		
 	}
+	
+	public int summitToID(float x, float y){
+		// Returns the ID associated with the summit (x;y) in the graph.
+		float gWidth = Math.floorDiv(Game.getWidth(), 32);
+		return (int)(x+gWidth*y);
+	}
+	
+	public float d(float x0, float y0, float xf, float yf){
+		// Returns the distance from (x0,y0) to (xf,yf)
+		return (float) Math.sqrt((xf-x0)*(xf-x0) + (yf-y0)*(yf-y0));
+	}
+	
+	public float d(int ID,float xf, float yf){
+		float x0,y0,gWidth;
+		gWidth = Math.floorDiv(Game.getWidth(), 32);
+		x0 = ID%gWidth;
+		y0 = (float) Math.floorDiv(ID, (int) gWidth);
+		return d(x0,y0,xf,yf);
+	}
+	
+	public float d(int ID0, int IDf){
+		float x0,y0,gWidth,xf,yf;
+		gWidth = Math.floorDiv(Game.getWidth(), 32);
+		x0 = ID0%gWidth;
+		y0 = (float) Math.floorDiv(ID0, (int) gWidth);
+		xf = IDf%gWidth;
+		yf = (float) Math.floorDiv(IDf, (int) gWidth);
+		return d(x0,y0,xf,yf);
+	}
+	
+	public boolean aStar(float x0, float y0, float xf, float yf){
+		//A* pathfinding, in 8-neighboring;
+		//	Returns whether a path was found or not.
+		//	If a path is found, the guard follows it.
+		boolean path = true;
+		
+		// First step : getting grid coordinates from (x0;y0) and (xf;yf)
+		float gx0,gy0,gxf,gyf;
+		gx0 = Math.floorDiv((int) x0, 32);
+		gxf = Math.floorDiv((int) xf, 32);
+		gy0 = Math.floorDiv((int) y0, 32);
+		gyf = Math.floorDiv((int) yf, 32);
+		
+		// Then we initialize S and notS
+		ArrayList<Float> F,L,D;
+		ArrayList<Integer> S,notS,directions,toFollow;
+		int current, dest;
+		final float gWidth = Math.floorDiv(Game.getWidth(), 32);
+		
+		S = new ArrayList<Integer>();
+		notS = new ArrayList<Integer>();
+		directions = new ArrayList<Integer>();
+		toFollow = new ArrayList<Integer>();
+		F = new ArrayList<Float>();
+		L = new ArrayList<Float>();
+		D = new ArrayList<Float>();
+		current = summitToID(gx0,gy0);
+		dest = summitToID(gxf,gyf);
+		
+		F.add(current, (float) 0);
+		L.add(current, d(gx0,gy0,gxf,gyf));
+		D.add(current, d(gx0,gy0,gxf,gyf)); //D(x) = F(x)+L(x) 
+		S.add(current);
+		
+		
+		// Now, we begin the pathfinding :
+		float minD;
+		int succ;
+		//Looping through the successors :
+		while(current != dest){
+			for(int i = -1; i < 2; i++){
+				for(int j = -1; j < 2; j++){
+					succ = (int) (current + i * gWidth + j);
+					if(!S.contains(succ) && !notS.contains(succ)){
+						//TODO : walls...
+						S.add(succ);
+						directions.add(succ, j+1 + i*3);
+					}
+					else if(D.get(succ) > (F.get(current)+1)+d(succ,gxf,gyf)){
+						D.set(succ, (F.get(current)+1)+d(succ,gxf,gyf));
+						if(notS.contains(succ)){
+							notS.remove(succ);
+							S.add(succ);
+						}
+					}
+				}
+			}
+			
+			minD = -1;
+			if(S.size() > 0){
+				for(Integer ID : S){
+					if(D.get(ID) < minD || minD < 0){
+						current = ID;
+						minD = D.get(ID); 
+						toFollow.add(directions.get(current));
+					}
+				}
+			}
+			else{
+				path = false;
+				break;
+			}
+		}
+		
+		if(path){
+			// A path has been found, follow it
+			// TODO : move the guard.
+			for(Integer dir : toFollow){
+				switch(dir){
+				case 0:
+					
+					break;
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 5:
+					break;
+				case 6:
+					break;
+				case 7:
+					break;
+				case 8:
+					break;
+				default:
+					break;
+				}
+			}
+		}
+		
+		return path;
+	}
+		
 }
