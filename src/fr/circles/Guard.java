@@ -21,9 +21,12 @@ public class Guard extends Character {
 	protected double a1, a2, b1, b2,av; // used to generate visual field
 	protected Polygon visualField;
 	protected float[] newPoint;
-	protected boolean stop;
+	protected boolean stop, alerted;
 	protected float a,b;
 	protected float xOrigin,yOrigin;
+	protected ArrayList<Integer> toFollow;
+	protected int currentDst;
+	protected int currentDir;
 	
 	public Guard(float centerX, float centerY, float radius) {
 		super(centerX, centerY, radius);
@@ -33,6 +36,9 @@ public class Guard extends Character {
 		this.visualField=new Polygon();
 		visualField.addPoint(centerX, centerY);
 		visualField.addPoint(centerX+5,centerY+5);
+		toFollow = new ArrayList<Integer>();
+		currentDst = -1;
+		currentDir = -1;
 	}
 
 	// ------------------------------Get--------------
@@ -179,6 +185,14 @@ public class Guard extends Character {
 		return (int)(x+gWidth*y);
 	}
 	
+	public int[] IDToSummit(int id){
+		int[] summit = {0,0};
+		float gWidth = Math.floorDiv(Game.getWidth(), 32);
+		summit[0] = (int) (32 * (id % gWidth)) ;
+		summit[1] = (int) (32 * Math.floorDiv(id, (int) gWidth));
+		return summit;
+	}
+	
 	public float d(float x0, float y0, float xf, float yf){
 		// Returns the distance from (x0,y0) to (xf,yf)
 		return (float) Math.sqrt((xf-x0)*(xf-x0) + (yf-y0)*(yf-y0));
@@ -217,14 +231,13 @@ public class Guard extends Character {
 		
 		// Then we initialize S and notS
 		ArrayList<Float> F,L,D;
-		ArrayList<Integer> S,notS,directions,toFollow;
+		ArrayList<Integer> S,notS,directions;
 		int current, dest;
 		final float gWidth = Math.floorDiv(Game.getWidth(), 32);
 		
 		S = new ArrayList<Integer>();
 		notS = new ArrayList<Integer>();
 		directions = new ArrayList<Integer>();
-		toFollow = new ArrayList<Integer>();
 		F = new ArrayList<Float>();
 		L = new ArrayList<Float>();
 		D = new ArrayList<Float>();
@@ -236,6 +249,7 @@ public class Guard extends Character {
 		D.add(current, d(gx0,gy0,gxf,gyf)); //D(x) = F(x)+L(x) 
 		S.add(current);
 		
+		ArrayList<Wall> walls = World.getWalls();
 		
 		// Now, we begin the pathfinding :
 		float minD;
@@ -245,18 +259,20 @@ public class Guard extends Character {
 			for(int i = -1; i < 2; i++){
 				for(int j = -1; j < 2; j++){
 					succ = (int) (current + i * gWidth + j);
-					if(!S.contains(succ) && !notS.contains(succ)){
-						//TODO : walls...
-						S.add(succ);
-						directions.add(succ, j+1 + i*3);
-					}
-					else if(D.get(succ) > (F.get(current)+1)+d(succ,gxf,gyf)){
-						D.set(succ, (F.get(current)+1)+d(succ,gxf,gyf));
-						if(notS.contains(succ)){
-							notS.remove(succ);
+					if(succ % 2 != 0){
+						if(!S.contains(succ) && !notS.contains(succ) && !wallAtCoords(succ,walls)){
 							S.add(succ);
+							directions.add(succ, j+1 + i*3);
+						}
+						else if(D.get(succ) > (F.get(current)+1)+d(succ,gxf,gyf)){
+							D.set(succ, (F.get(current)+1)+d(succ,gxf,gyf));
+							if(notS.contains(succ)){
+								notS.remove(succ);
+								S.add(succ);
+							}
 						}
 					}
+					
 				}
 			}
 			
@@ -276,35 +292,59 @@ public class Guard extends Character {
 			}
 		}
 		
-		if(path){
-			// A path has been found, follow it
-			// TODO : move the guard.
-			for(Integer dir : toFollow){
-				switch(dir){
-				case 0:
-					
-					break;
-				case 1:
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
-				case 5:
-					break;
-				case 6:
-					break;
-				case 7:
-					break;
-				case 8:
-					break;
-				default:
-					break;
-				}
+		return path;
+	}
+
+	protected void moveAlerted(){
+		float gWidth = Math.floorDiv(Game.getWidth(), 32);
+		if(!toFollow.isEmpty()){
+			if(currentDir == -1 || summitToID(this.x,this.y) == currentDst ){
+				currentDir = toFollow.get(0);
+				toFollow.remove(0);
+				currentDst = (int) ((currentDir / Math.abs(currentDir))*((currentDir%3)+gWidth*(1-(currentDir%3))));
+			}
+			switch (currentDir){
+			// Basically, we update the speed according to the destination.
+			case 0:// Impossible
+				break;
+			case 1:
+				speedX = 0;
+				speedY = -0.4f;
+				break;
+			case 2 :// Impossible 
+				break;
+			case 3 :
+				speedX = -0.4f;
+				speedY = 0;
+				break;
+			case 5 : 
+				speedX = 0.4f;
+				speedY = 0;
+				break;
+			case 6 :// Impossible 
+				break;
+			case 7 : 
+				speedX = 0;
+				speedY = 0.4f;
+				break;
+			case 8 :// Impossible 
+				break;
+			default : break;
+			}
+		}
+	}
+	
+	private boolean wallAtCoords(int succ, ArrayList<Wall> walls) {
+		int j = succ % Math.floorDiv(Game.getWidth(), 32);
+		int i = Math.floorDiv(succ, Math.floorDiv(Game.getWidth(), 32));
+		
+		for(Wall w : walls){
+			if(w.getX() == j*32 && w.getY() == i*32){
+				return true;
 			}
 		}
 		
-		return path;
+		return false;
 	}
 		
 }
