@@ -21,14 +21,14 @@ public class GuardVer extends Guard{
 			this.speedY=(float) -0.4;
 		}
 	}
-	
+
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
 		super.update(arg1, arg2, arg3);
 		verticalMove();
 		moveY(arg3);
 	}
-	
-	
+
+
 	public void render(GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException {
 		super.render(arg1, arg2, arg3);
 	}

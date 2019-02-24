@@ -4,13 +4,13 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Capacity2 {
-	
+
 	private long duration;
 	private String name;
 	private String effectDescription;
-	private boolean second;    // true si la capacite est limitee en temps  false si la capacite est limitée en nombre
+	private boolean second;    // true si la capacite est limitee en temps  false si la capacite est limitï¿½e en nombre
 	private Image image;
-	
+
 	public Capacity2(String typeCapacity) throws SlickException{
 		if (typeCapacity=="couteau"){
 			this.duration=5;
@@ -23,7 +23,7 @@ public class Capacity2 {
 			this.duration=5;
 			this.image=new Image("images/bonuses/gun.png");
 			this.name="pistolet";
-			this.effectDescription="s'arme d'un pistolet et peut lancé des projectiles";
+			this.effectDescription="s'arme d'un pistolet et peut lancer des projectiles";
 			this.second=false;
 		}
 		if (typeCapacity=="clef"){
@@ -55,13 +55,13 @@ public class Capacity2 {
 			this.second=false;
 		}
 	}
-	
+
 	public void action(){
-		
+
 	}
 
 	public Image getImage() {
 		return image;
 	}
-	
+
 }

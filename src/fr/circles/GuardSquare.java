@@ -9,9 +9,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.basic.World;
 
 public class GuardSquare extends Guard {
-	
+
 	private boolean done;
-	
+
 	public GuardSquare(float x, float y, float radius) {
 		super(x, y, radius);
 		this.xOrigin=this.x+150;
@@ -37,12 +37,12 @@ public class GuardSquare extends Guard {
 			this.speedX=(float)-0.4;
 			this.speedY=0;
 		}
-		
+
 		if ((this.x>this.xOrigin+100) && (this.y<this.yOrigin-100)){
 			this.speedX=(float)-0;
 			this.speedY=(float)0.4;
 		}
-		
+
 		if ((this.x<this.xOrigin-100) && (this.y>this.yOrigin+100)){
 			this.speedX=(float)-0;
 			this.speedY=(float)-0.4;
@@ -52,6 +52,6 @@ public class GuardSquare extends Guard {
 			this.speedY=0;
 		}
 	}
-	
-	
+
+
 }

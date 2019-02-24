@@ -25,7 +25,7 @@ public abstract class Menu extends BasicGameState {
 	protected String nom;
 	protected String[] items;
 	private int renderX, renderY;
-	
+
 	public Menu(){
 		//Ne pas utiliser si possible. Utilisez ceux d'en dessous.
 		selection = 0;
@@ -34,7 +34,7 @@ public abstract class Menu extends BasicGameState {
 		renderX = 550;
 		renderY = 320;
 	}
-	
+
 	public Menu(int itemCount){
 		selection = 0;
 		items = new String[itemCount];
@@ -42,7 +42,7 @@ public abstract class Menu extends BasicGameState {
 		renderX = 550;
 		renderY = 320;
 	}
-	
+
 	public Menu(int itemCount,int startingX, int startingY){
 		selection = 0;
 		items = new String[itemCount];
@@ -50,11 +50,11 @@ public abstract class Menu extends BasicGameState {
 		renderX = startingX;
 		renderY = startingY;
 	}
-	
+
 	public String[] getItems() {
 		return this.items;
 	}
-	
+
 	@Override
 	public void init(GameContainer container, StateBasedGame game)throws SlickException {
 		this.container = container;
@@ -65,12 +65,12 @@ public abstract class Menu extends BasicGameState {
 
 		nbrOptions = items.length;
 	}
-	
+
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 
 	}
-	
+
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
 		g.drawString(this.nom, renderX, renderY);
@@ -81,9 +81,9 @@ public abstract class Menu extends BasicGameState {
 			g.drawString(this.items[i], renderX+10, renderY+40 + 30 * i);
 		}
 		g.drawString(">>", renderX - 10, renderY+40 + 30 * selection);
-		
+
 	}
-	
+
 	@Override
 	public void keyPressed(int key, char c) {
 		switch (key) {

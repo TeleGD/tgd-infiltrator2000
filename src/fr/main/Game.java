@@ -11,7 +11,7 @@ import fr.basic.menu.*;
 import fr.basic.World;
 
 public class Game extends StateBasedGame {
-	
+
 	public Game(String name) {
 		super(name);
 	}
@@ -27,7 +27,7 @@ public class Game extends StateBasedGame {
 		app.setShowFPS(true);
 		app.start();
 	}
-	
+
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
  		addState(new MenuPrincipal());

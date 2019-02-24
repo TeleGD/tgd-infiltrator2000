@@ -12,12 +12,12 @@ import fr.circles.Player;
 import fr.rectangles.Wall;
 
 public class Link {
-	
+
 	private Line line;
 	private Player player;
 	private GuardTest guard;
 	private boolean wall;//if there is a wall between them
-	
+
 	public Link(Player player,GuardTest guard){
 		this.line = new Line(player.getCenterX(), player.getCenterY(), guard.getCenterX(), guard.getCenterY());
 		this.player=player;
@@ -32,9 +32,9 @@ public class Link {
 				wall =true;
 			}
 		}
-		
-		
-		
+
+
+
 		if ((guard.getArea().contains(player.getCenterX(), player.getCenterY()))&&(!wall)&&(fr.util.Collisions.distance(player.getCenter(), guard.getCenter())<400)){
 			guard.showAlert();
 		}else {guard.stopAlert();}

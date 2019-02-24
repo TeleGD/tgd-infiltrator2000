@@ -16,21 +16,21 @@ public class FrontalWall extends Wall{
 		this.img2=imgLat;
 		this.nbreTile=nbrTileLong;
 	}
-		
+
 		public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
-			
+
 		}
-		
+
 		public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
 			arg3.setColor(Color.red);
 			arg3.fillRect((float)x, (float)y, (float)width, (float)height);
-			
+
 			for (int i=0;i<nbreTile-2;i++){
 				arg3.drawImage(img,(float) (x), (float)(y+i*32));
 			}
 			arg3.drawImage(img2,(float) (x), (float)(y+nbreTile*32-32));
 			arg3.drawImage(img2,(float) (x), (float)(y+nbreTile*32-64));
-			
+
 		}
 
-}	
+}

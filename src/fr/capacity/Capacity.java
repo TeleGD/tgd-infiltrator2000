@@ -8,5 +8,5 @@ public interface Capacity {
 	public String getName();
 	public String getDescription();
 	public double getRemainingTime();
-	
+
 }

@@ -13,10 +13,10 @@ public class Item extends Circle{
 	}
 
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
-		
+
 	}
-	
+
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
-	
+
 	}
 }

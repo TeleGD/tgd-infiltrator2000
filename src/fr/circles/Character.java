@@ -5,7 +5,7 @@ public abstract class Character extends Movable{
 	public Character(float centerPointX, float centerPointY, float radius) {
 		super(centerPointX, centerPointY, radius);
 	}
-	
+
 	public int getDirection(){
 		if ((this.speedX>0)&&(this.speedY==0)){
 			return 0;

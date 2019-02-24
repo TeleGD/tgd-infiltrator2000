@@ -18,15 +18,15 @@ import java.io.PrintWriter;
 public class MenuScores extends Menu {
 
 	public static int ID = 3;
-	
+
 	private static ArrayList<Long> scores;
 	private boolean rendered = false;
-	
+
 	public static void readScores() throws IOException{
 		scores = new ArrayList<Long>();
 		FileReader fr = new FileReader("scores.txt");
 		BufferedReader br = new BufferedReader(fr);
-		
+
 		String list ="";
 		String currentLine = "";
 		String[] listPrime;
@@ -40,20 +40,20 @@ public class MenuScores extends Menu {
 		scores.sort(Comparator.naturalOrder());
 		br.close();
 	}
-	
+
 	public static void saveScores() throws IOException{
 		FileWriter fw = new FileWriter("scores.txt",false);
 		PrintWriter pw = new PrintWriter(fw);
-		
+
 		for(Long l : scores){
 			pw.print(l+";");
 			System.out.println("Added "+l);
 		}
 		pw.println();
 		pw.close();
-		
+
 	}
-	
+
 	public MenuScores(){
 		super(11,500,200);
 		scores = new ArrayList<Long>();
@@ -64,14 +64,14 @@ public class MenuScores extends Menu {
 		items[10] = "Quitter";
 		nom = "Tableau des scores";
 	}
-	
+
 	public static void addScore(Long l) throws IOException{
 		readScores();
 		scores.add(l);
 		scores.sort(Comparator.naturalOrder());
 		saveScores();
 	}
-	
+
 	@Override
 	public void keyPressed(int key, char c) {
 		switch (key) {
@@ -90,7 +90,7 @@ public class MenuScores extends Menu {
 			break;
 		}
 	}
-	
+
 	@Override
 	public void execOption(){
 		switch (selection) {
@@ -101,7 +101,7 @@ public class MenuScores extends Menu {
 			break;
 		}
 	}
-	
+
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException{
 		if(!rendered){
@@ -111,12 +111,12 @@ public class MenuScores extends Menu {
 			}
 			rendered = true;
 		}
-		
+
 		super.render(arg0, arg1, g);
 	}
-	
+
 	public static void reset(){
-		
+
 	}
 
 	@Override
@@ -124,5 +124,5 @@ public class MenuScores extends Menu {
 		// TODO Auto-generated method stub
 		return ID;
 	}
-	
+
 }

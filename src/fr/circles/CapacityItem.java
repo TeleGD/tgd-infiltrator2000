@@ -24,13 +24,13 @@ public class CapacityItem extends Item {
 	public void setCapacityGranted(Capacity2 capacityGranted) {
 		this.capacityGranted = capacityGranted;
 	}
-	
+
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException  {
-		
+
 	}
-	
+
 	public void render( GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException{
-	
+
 	}
-	
+
 }

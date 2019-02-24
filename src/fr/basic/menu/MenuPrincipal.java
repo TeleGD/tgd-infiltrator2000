@@ -16,14 +16,14 @@ import fr.basic.World;
 
 public class MenuPrincipal extends Menu {
 	public static int ID = 1;
-	
+
 	public MenuPrincipal(){
 		super(2);
 		items[0] = "Jouer";
 		items[1] = "Quitter";
 		nom = "Menu Principal";
 	}
-	
+
 	@Override
 	public void keyPressed(int key, char c) {
 		if(key == Input.KEY_ESCAPE){
@@ -31,11 +31,11 @@ public class MenuPrincipal extends Menu {
 		}
 		super.keyPressed(key, c);
 	}
-	
+
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
 		super.render(arg0, arg1, g);
 	}
-	
+
 	@Override
 	public void execOption(){
 		switch (selection) {

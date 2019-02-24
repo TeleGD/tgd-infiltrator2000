@@ -17,28 +17,28 @@ public class MenuFin extends Menu {
 	public static int ID = 2;
 	public MenuFin(){
 		super(3);
-		
+
 		selection = 1;
 		items[0] = "Merci d'avoir joue! Score final : "+World.getScore();
 		items[1] = "Scores";
 		items[2] = "Quitter";
 		nom = "Menu de Fin";
 	}
-	
+
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
 		g.drawString(this.nom, 550, 320);
 
 		g.setColor(Color.white);
 		g.drawString(this.items[0], 400, 360);
-		
+
 		for (int i = 1; i < nbrOptions; i++) {
 			g.drawString(this.items[i], 560, 360 + 30 * i);
 		}
 		g.drawString(">>", 540, 360 + 30 * selection);
-		
+
 	}
-	
+
 	@Override
 	public void keyPressed(int key, char c) {
 		switch (key) {
@@ -61,7 +61,7 @@ public class MenuFin extends Menu {
 			break;
 		}
 	}
-	
+
 	@Override
 	public void execOption(){
 		switch (selection) {
@@ -88,5 +88,5 @@ public class MenuFin extends Menu {
 		// TODO Auto-generated method stub
 		return ID;
 	}
-	
+
 }

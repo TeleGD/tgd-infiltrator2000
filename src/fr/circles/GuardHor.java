@@ -9,10 +9,10 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.basic.World;
 
 public class GuardHor extends Guard{
-	
-	
-	
-	
+
+
+
+
 	public GuardHor(float x, float y, float radius) {
 		super(x, y,radius);
 		this.speedX=(float)0.4;
@@ -25,13 +25,13 @@ public class GuardHor extends Guard{
 			this.speedX=(float) -0.4;
 		}
 	}
-	
+
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) throws SlickException {
 		horizontalMove();
 		moveX(arg3);
 		super.update(arg1, arg2, arg3);
 	}
-	
+
 	public void render(GameContainer arg1, StateBasedGame arg2, Graphics arg3) throws SlickException {
 		super.render(arg1, arg2, arg3);
 	}
