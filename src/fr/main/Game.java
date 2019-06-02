@@ -12,6 +12,14 @@ import fr.basic.World;
 
 public class Game extends StateBasedGame {
 
+	public static int getWidth() {
+		return 1280;
+	}
+
+	public static int getHeight() {
+		return 720;
+	}
+
 	public Game(String name) {
 		super(name);
 	}
@@ -21,7 +29,7 @@ public class Game extends StateBasedGame {
 	}
 
 	public static void main(String[] args) throws SlickException {
-		AppGameContainer app = new AppGameContainer(new Game(),1280,720,false);
+		AppGameContainer app = new AppGameContainer(new Game(), Game.getWidth(), Game.getHeight(), false);
 		//app.setTargetFrameRate(120);
 		app.setVSync(true);
 		app.setShowFPS(true);
