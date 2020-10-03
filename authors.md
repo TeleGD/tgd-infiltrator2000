@@ -1,6 +1,6 @@
 - Arthur Canal (@canalarthur)
 - Guillaume Teset (@gteset)
 - JSNerd12345 (@JSNerd12345)
-- leterrierM (@leterrierM)
+- Moran Letterier (@leterrierM)
 - Nicolas Bernardes (@nicorb)
 - Valentin Moreau (@ValentinMoreau)
