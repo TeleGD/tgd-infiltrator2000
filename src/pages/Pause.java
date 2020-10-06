@@ -10,7 +10,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import app.AppMenu;
 import app.elements.MenuItem;
 
-import games.guardSlalom.World;
+import games.infiltrator2000.World;
 
 public class Pause extends AppMenu {
 

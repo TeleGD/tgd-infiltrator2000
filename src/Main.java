@@ -14,7 +14,7 @@ import app.AppLoader;
 public final class Main {
 
 	public static final void main(String[] arguments) throws SlickException {
-		String title = "Guard Slalom";
+		String title = "Infiltrator2000";
 		int width = 1280;
 		int height = 720;
 		boolean fullscreen = false;
@@ -52,10 +52,10 @@ public final class Main {
 				this.addState(new pages.Welcome(0));
 				// this.addState(new pages.Choice(1));
 				this.addState(new pages.Pause(2));
-				this.addState(new games.guardSlalom.World(3));
-		 		this.addState(new games.guardSlalom.menus.MenuPrincipal(1));
-				this.addState(new games.guardSlalom.menus.MenuFin(4));
-				this.addState(new games.guardSlalom.menus.MenuScores(5));
+				this.addState(new games.infiltrator2000.World(3));
+		 		this.addState(new games.infiltrator2000.menus.MenuPrincipal(1));
+				this.addState(new games.infiltrator2000.menus.MenuFin(4));
+				this.addState(new games.infiltrator2000.menus.MenuScores(5));
 			}
 
 		};
