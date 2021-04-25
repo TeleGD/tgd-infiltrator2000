@@ -21,6 +21,8 @@ import games.infiltrator2000.circles.GuardVer;
 import games.infiltrator2000.circles.Item;
 import games.infiltrator2000.circles.Player;
 import games.infiltrator2000.circles.Projectile;
+import games.infiltrator2000.menus.MenuFin;
+import games.infiltrator2000.menus.MenuScores;
 import games.infiltrator2000.rectangles.FrontalWall;
 import games.infiltrator2000.rectangles.Ground;
 import games.infiltrator2000.rectangles.LateralWall;
@@ -32,14 +34,13 @@ public class World extends BasicGameState{
 	private int ID;
 	private int state;
 
-	private static Chrono chrono = new Chrono();
-	private static Player player;
-	private static ArrayList<Wall> walls;
-	private static ArrayList<Guard> guards;
+	private Chrono chrono;
+	private Player player;
+	private ArrayList<Wall> walls;
+	private ArrayList<Guard> guards;
 	private ArrayList<Guard> deadGuards;
-	private static ArrayList<Item> items;
-	private static ArrayList<Projectile> projectiles;
-	private ArrayList<Integer> scores;
+	private ArrayList<Item> items;
+	private ArrayList<Projectile> projectiles;
 	private ArrayList<Ground> ground;
 	private EndLevel finish;
 
@@ -64,33 +65,6 @@ public class World extends BasicGameState{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) {
 		/* Méthode exécutée une unique fois au chargement du programme */
-		guards = new ArrayList<Guard>();
-		walls = new ArrayList<Wall>();
-		items = new ArrayList<Item>();
-		projectiles = new ArrayList<Projectile>();
-		deadGuards = new ArrayList<Guard>();
-		ground = new ArrayList<Ground>();
-
-		chrono = new Chrono();
-		chrono.start();
-
-		//walls.add(new LateralWall(700,200,15,AppLoader.loadPicture("/images/infiltrator2000/walls/lateralwall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1side.png")));
-		//walls.add(new FrontalWall(668,200,5,AppLoader.loadPicture("/images/infiltrator2000/walls/wall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1front.png")));
-		walls.add(new LateralWall(0,-64,40,AppLoader.loadPicture("/images/infiltrator2000/walls/lateralwall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1side.png")));
-		walls.add(new LateralWall(0,720-32,40,AppLoader.loadPicture("/images/infiltrator2000/walls/lateralwall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1side.png")));
-		walls.add(new FrontalWall(0,0,23,AppLoader.loadPicture("/images/infiltrator2000/walls/wall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1front.png")));
-		walls.add(new FrontalWall(1280-32,0,23,AppLoader.loadPicture("/images/infiltrator2000/walls/wall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1front.png")));
-
-		guards.add(new GuardSquare(600,400,50));
-		guards.add(new GuardVer(300,400,50));
-		guards.add(new GuardHor(650,100,40));
-		player = new Player(500, 300, 35);
-
-		player.addCapacity(new Capacity2("couteau"));
-		player.addCapacity(new Capacity2("pistolet"));
-		player.addCapacity(new Capacity2("radar"));
-		ground.add(new Ground(32,32,5,5));
-		this.finish=new EndLevel(800,400,3);
 	}
 
 	@Override
@@ -155,6 +129,13 @@ public class World extends BasicGameState{
 			this.setState(1);
 			arg1.enterState(2, new FadeOutTransition(), new FadeInTransition());
 		}
+		if (input.isKeyDown(Input.KEY_ENTER)) {
+			this.setState(3);
+			long score = chrono.getTime();
+			((MenuScores) arg1.getState(5 /* MenuScores */)).addScore(score);
+			((MenuFin) arg1.getState(4 /* MenuFin */)).setScore(score);
+			arg1.enterState(4 /* MenuFin */, new FadeOutTransition(),	new FadeInTransition());
+		}
 		for(Projectile p : projectiles){
 			p.update(arg0, arg1, arg2);
 		}
@@ -187,18 +168,48 @@ public class World extends BasicGameState{
 
 	public void play(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois au début du jeu */
+		guards = new ArrayList<Guard>();
+		walls = new ArrayList<Wall>();
+		items = new ArrayList<Item>();
+		projectiles = new ArrayList<Projectile>();
+		deadGuards = new ArrayList<Guard>();
+		ground = new ArrayList<Ground>();
+
+		chrono = new Chrono();
+		chrono.start();
+
+		//walls.add(new LateralWall(700,200,15,AppLoader.loadPicture("/images/infiltrator2000/walls/lateralwall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1side.png")));
+		//walls.add(new FrontalWall(668,200,5,AppLoader.loadPicture("/images/infiltrator2000/walls/wall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1front.png")));
+		walls.add(new LateralWall(0,-64,40,AppLoader.loadPicture("/images/infiltrator2000/walls/lateralwall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1side.png")));
+		walls.add(new LateralWall(0,720-32,40,AppLoader.loadPicture("/images/infiltrator2000/walls/lateralwall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1side.png")));
+		walls.add(new FrontalWall(0,0,23,AppLoader.loadPicture("/images/infiltrator2000/walls/wall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1front.png")));
+		walls.add(new FrontalWall(1280-32,0,23,AppLoader.loadPicture("/images/infiltrator2000/walls/wall1up.png"),AppLoader.loadPicture("/images/infiltrator2000/walls/wall1front.png")));
+
+		guards.add(new GuardSquare(this, 600,400,50));
+		guards.add(new GuardVer(this, 300,400,50));
+		guards.add(new GuardHor(this, 650,100,40));
+		player = new Player(this, 500, 300, 35);
+
+		player.addCapacity(new Capacity2("couteau"));
+		player.addCapacity(new Capacity2("pistolet"));
+		player.addCapacity(new Capacity2("radar"));
+		ground.add(new Ground(32,32,5,5));
+		this.finish=new EndLevel(800,400,3);
 	}
 
 	public void pause(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée lors de la mise en pause du jeu */
+		chrono.pause();
 	}
 
 	public void resume(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée lors de la reprise du jeu */
+		chrono.resume();
 	}
 
 	public void stop(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois à la fin du jeu */
+		chrono.stop();
 	}
 
 	public void setState(int state) {
@@ -209,10 +220,6 @@ public class World extends BasicGameState{
 		return this.state;
 	}
 
-	public static long getScore(){
-		return chrono.getTime();
-	}
-
 	public void keyPressed(int key, char c){
 		player.keyPressed(key,c);
 	}
@@ -221,46 +228,42 @@ public class World extends BasicGameState{
 		player.keyReleased(key,c);
 	}
 
-	public static void addWall(Wall w){
+	public void addWall(Wall w){
 		walls.add(w);
 	}
 
-	public static void addGuard(Guard g){
+	public void addGuard(Guard g){
 		guards.add(g);
 	}
 
-	public static void addItem(Item i){
+	public void addItem(Item i){
 		items.add(i);
 	}
 
-	public static void addProjectiles(Projectile p){
+	public void addProjectiles(Projectile p){
 		projectiles.add(p);
 	}
 
 
-	public static ArrayList<Wall> getWalls(){
+	public ArrayList<Wall> getWalls(){
 		return walls;
 	}
 
-	public static ArrayList<Guard> getGuards(){
+	public ArrayList<Guard> getGuards(){
 		return guards;
 	}
 
-	public static ArrayList<Item> getItems(){
+	public ArrayList<Item> getItems(){
 		return items;
 	}
 
 
-	public static ArrayList<Projectile> getProjectiles(){
+	public ArrayList<Projectile> getProjectiles(){
 		return projectiles;
 	}
 
-	public static Player getPlayer(){
+	public Player getPlayer(){
 		return player;
-	}
-
-	public static void reset(){
-		chrono.start();
 	}
 
 }

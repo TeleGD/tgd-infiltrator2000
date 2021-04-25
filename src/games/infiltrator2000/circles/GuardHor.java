@@ -4,13 +4,15 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
+import games.infiltrator2000.World;
+
 public class GuardHor extends Guard{
 
 
 
 
-	public GuardHor(float x, float y, float radius) {
-		super(x, y,radius);
+	public GuardHor(World world, float x, float y, float radius) {
+		super(world, x, y,radius);
 		this.speedX=(float)0.4;
 	}
 	public void horizontalMove(){

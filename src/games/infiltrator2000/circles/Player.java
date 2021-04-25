@@ -12,11 +12,13 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import app.AppLoader;
 
+import games.infiltrator2000.World;
 import games.infiltrator2000.capacity.Capacity2;
 import games.infiltrator2000.rectangles.Wall;
 
 public class Player extends Character {
 
+	private World world;
 	protected ArrayList<Capacity2> capacities;
 	protected ArrayList<Wall> walls;
 	protected double speed = 0.25;
@@ -28,8 +30,9 @@ public class Player extends Character {
 	private Player circleTest;
 	private double vitTot;
 
-	public Player(float centerPointX, float centerPointY, float radius) {
+	public Player(World world, float centerPointX, float centerPointY, float radius) {
 		super(centerPointX, centerPointY, radius);
+		this.world = world;
 		this.capacities = new ArrayList<Capacity2>();
 		inventory = AppLoader.loadPicture("/images/infiltrator2000/inventory.png");
 	}
@@ -99,7 +102,7 @@ public class Player extends Character {
 		moveX(delta);
 		moveY(delta);
 		// circleTest=new Player(newX,newY,radius);
-		for (Wall w : games.infiltrator2000.World.getWalls()) {
+		for (Wall w : world.getWalls()) {
 			a = games.infiltrator2000.util.Collisions.col(this, w);
 			switch (a) {
 			case 1:

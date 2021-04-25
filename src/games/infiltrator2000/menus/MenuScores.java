@@ -1,8 +1,10 @@
 package games.infiltrator2000.menus;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,11 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import app.AppLoader;
 
 public class MenuScores extends Menu {
 
@@ -25,72 +23,68 @@ public class MenuScores extends Menu {
 		return this.ID;
 	}
 
-	private static ArrayList<Long> scores;
-	private boolean rendered = false;
-
-	public static void readScores() throws IOException{
-		scores = new ArrayList<Long>();
-		FileReader fr = new FileReader("res"+File.separator+"data"+File.separator+"infiltrator2000"+File.separator+"scores.txt");
-		BufferedReader br = new BufferedReader(fr);
-
-		String list ="";
-		String currentLine = "";
-		String[] listPrime;
-		while((currentLine = br.readLine()) != null) {
-				list += currentLine;
-		}
-		listPrime = list.split(";");
-		for(String s : listPrime){
-			if(!s.isEmpty())scores.add(Long.parseLong(s));
-		}
-		scores.sort(Comparator.naturalOrder());
-		br.close();
-	}
-
-	public static void saveScores() throws IOException{
-		FileWriter fw = new FileWriter("res"+File.separator+"data"+File.separator+"infiltrator2000"+File.separator+"scores.txt",false);
-		PrintWriter pw = new PrintWriter(fw);
-
-		for(Long l : scores){
-			pw.print(l+";");
-			System.out.println("Added "+l);
-		}
-		pw.println();
-		pw.close();
-
-	}
+	private List<Long> scores;
 
 	public MenuScores(int ID) {
 		super(11,500,200);
 		this.ID = ID;
-		scores = new ArrayList<Long>();
 		selection = 10;
-		for(int i = 1; i<=10; i++){
-			items[i-1] = ""+i+" : ";
-		}
+		readScores();
+		loadScores();
 		items[10] = "Quitter";
 		nom = "Tableau des scores";
 	}
 
-	public static void addScore(Long l) throws IOException{
-		readScores();
-		scores.add(l);
-		scores.sort(Comparator.naturalOrder());
+	private void readScores() {
+		String json = AppLoader.restoreData("/infiltrator2000/scores.json");
+		List<Long> scores = new ArrayList<Long>();
+		try {
+			JSONArray array = new JSONArray(json);
+			for (int i = 0, li = array.length(); i < li; ++i) {
+				long score = array.getLong(i);
+				scores.add(score);
+			}
+		} catch (JSONException error) {}
+		this.scores = scores;
+	}
+
+	private void saveScores() {
+		JSONArray array = new JSONArray();
+		for (long score: this.scores) {
+			array.put(score);
+		}
+		String json = array.toString();
+		AppLoader.saveData("/infiltrator2000/scores.json", json);
+	}
+
+	public void addScore(long score) {
+		int i = 0;
+		int li = scores.size();
+		while (i < li && scores.get(i) >= score) {
+			++i;
+		}
+		scores.add(i, score);
+		while (li >= 10) {
+			scores.remove(li);
+			--li;
+		}
+		loadScores();
 		saveScores();
+	}
+
+	public void loadScores() {
+		for (int i = 0, li = this.scores.size(); i < li; ++i) {
+			items[i] = i + " : " + this.scores.get(i);
+		}
+		for (int i = this.scores.size(); i < 10; ++i) {
+			items[i] = i + " : 0";
+		}
 	}
 
 	@Override
 	public void keyPressed(int key, char c) {
 		if(key == Input.KEY_ESCAPE){
-			game.enterState(4 /* MenuFin */, new FadeOutTransition(), new FadeInTransition());
-		}
-		if(key == Input.KEY_S){
-			try {
-				saveScores();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			game.enterState(1 /* MenuPrincipal */, new FadeOutTransition(), new FadeInTransition());
 		}
 		super.keyPressed(key, c);
 	}
@@ -99,7 +93,7 @@ public class MenuScores extends Menu {
 	public void execOption(){
 		switch (selection) {
 		case 10:
-			game.enterState(4 /* MenuFin */, new FadeOutTransition(),	new FadeInTransition());
+			game.enterState(1 /* MenuPrincipal */, new FadeOutTransition(),	new FadeInTransition());
 			break;
 		default:
 			break;
@@ -108,19 +102,7 @@ public class MenuScores extends Menu {
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g){
-		if(!rendered){
-			for(int i = 1; i<=10; i++){
-				items[i-1] = ""+i+" : ";
-				if(scores.size()>=i) items[i-1] += scores.get(i-1);
-			}
-			rendered = true;
-		}
-
 		super.render(arg0, arg1, g);
-	}
-
-	public static void reset(){
-
 	}
 
 }

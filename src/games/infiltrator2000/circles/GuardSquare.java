@@ -4,12 +4,14 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
+import games.infiltrator2000.World;
+
 public class GuardSquare extends Guard {
 
 	private boolean done;
 
-	public GuardSquare(float x, float y, float radius) {
-		super(x, y, radius);
+	public GuardSquare(World world, float x, float y, float radius) {
+		super(world, x, y, radius);
 		this.xOrigin=this.x+150;
 		this.yOrigin=this.y+150;
 		this.speedX = (float)0.4;

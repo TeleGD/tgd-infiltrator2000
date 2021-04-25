@@ -16,9 +16,9 @@ public class GuardTest extends Guard{
 	private int alert;
 	private Polygon area;
 
-	public GuardTest(float centerX, float centerY, float radius) {
-		super(centerX, centerY, radius);
-		link=new Link(World.getPlayer(),this);
+	public GuardTest(World world, float centerX, float centerY, float radius) {
+		super(world, centerX, centerY, radius);
+		link=new Link(world, world.getPlayer(),this);
 		this.area=new Polygon();
 		this.area.addPoint(this.getCenterX(), getCenterY());
 

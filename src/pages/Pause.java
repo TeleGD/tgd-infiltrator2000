@@ -34,7 +34,7 @@ public class Pause extends AppMenu {
 			new MenuItem("Abandon") {
 				public void itemSelected() {
 					((World) game.getState(3)).setState(0);
-					game.enterState(4, new FadeOutTransition(), new FadeInTransition());
+					game.enterState(1, new FadeOutTransition(), new FadeInTransition());
 				}
 			}
 		}));

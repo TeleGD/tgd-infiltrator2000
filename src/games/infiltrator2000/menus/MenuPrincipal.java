@@ -7,17 +7,16 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-import games.infiltrator2000.World;
-
 public class MenuPrincipal extends Menu {
 
 	private int ID;
 
 	public MenuPrincipal(int ID) {
-		super(2);
+		super(3);
 		this.ID = ID;
-		items[0] = "Jouer";
-		items[1] = "Quitter";
+		items[0] = "Infiltrator2000";
+		items[1] = "Scores";
+		items[2] = "Retour";
 		nom = "Menu Principal";
 	}
 
@@ -41,11 +40,13 @@ public class MenuPrincipal extends Menu {
 	public void execOption(){
 		switch (selection) {
 		case 0:
-			World.reset();
 			game.enterState(3 /* World */, new FadeOutTransition(), new FadeInTransition());
 			break;
-
 		case 1:
+			game.enterState(5 /* MenuScores */, new FadeOutTransition(), new FadeInTransition());
+			break;
+
+		case 2:
 			game.enterState(0 /* Welcome */, new FadeOutTransition(), new FadeInTransition());
 			break;
 		default:

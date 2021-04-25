@@ -12,12 +12,14 @@ import games.infiltrator2000.rectangles.Wall;
 
 public class Link {
 
+	private World world;
 	private Line line;
 	private Player player;
 	private GuardTest guard;
 	private boolean wall;//if there is a wall between them
 
-	public Link(Player player,GuardTest guard){
+	public Link(World world, Player player,GuardTest guard){
+		this.world = world;
 		this.line = new Line(player.getCenterX(), player.getCenterY(), guard.getCenterX(), guard.getCenterY());
 		this.player=player;
 		this.guard=guard;
@@ -26,7 +28,7 @@ public class Link {
 	public void update(GameContainer arg1, StateBasedGame arg2, int arg3) {
 		this.line =new Line(player.getCenterX(), player.getCenterY(), guard.getCenterX(), guard.getCenterY());
 		wall = false;
-		for (Wall w:World.getWalls()){
+		for (Wall w:world.getWalls()){
 			if (line.intersects(w)){
 				wall =true;
 			}

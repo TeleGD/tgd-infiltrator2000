@@ -8,8 +8,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-import games.infiltrator2000.World;
-
 public class MenuFin extends Menu {
 
 	private int ID;
@@ -18,7 +16,7 @@ public class MenuFin extends Menu {
 		super(3);
 		this.ID = ID;
 		selection = 1;
-		items[0] = "Merci d'avoir joue! Score final : "+World.getScore();
+		items[0] = "Merci d'avoir joue! Score final : 0";
 		items[1] = "Scores";
 		items[2] = "Quitter";
 		nom = "Menu de Fin";
@@ -56,11 +54,6 @@ public class MenuFin extends Menu {
 		case 0:
 			break;
 		case 1:
-			/*try {
-				MenuScores.addScore(World.getScore());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}*/
 			game.enterState(5 /* MenuScores */, new FadeOutTransition(),	new FadeInTransition());
 			break;
 		case 2:
@@ -69,6 +62,10 @@ public class MenuFin extends Menu {
 		default:
 			break;
 		}
+	}
+
+	public void setScore(long score) {
+		items[0] = "Merci d'avoir joue! Score final : " + score;
 	}
 
 }

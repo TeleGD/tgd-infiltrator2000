@@ -12,6 +12,8 @@ import games.infiltrator2000.World;
 import games.infiltrator2000.rectangles.Wall;
 
 public class Guard extends Character {
+
+	private World world;
 	protected boolean destructed;
 	protected double a1, a2, b1, b2,av; // used to generate visual field
 	protected Polygon visualField;
@@ -23,8 +25,9 @@ public class Guard extends Character {
 	protected int currentDst;
 	protected int currentDir;
 
-	public Guard(float centerX, float centerY, float radius) {
+	public Guard(World world, float centerX, float centerY, float radius) {
 		super(centerX, centerY, radius);
+		this.world = world;
 		this.xOrigin=centerX;
 		this.yOrigin=centerY;
 		this.destructed = false;
@@ -160,7 +163,7 @@ public class Guard extends Character {
 			while(!(stop || games.infiltrator2000.util.Collisions.distance(newPoint, this.getCenter())>300)){
 				newPoint=games.infiltrator2000.util.Collisions.prolongementDroite(this.getCenterX(), this.getCenterY(), a, b, av);
 				av+=3;
-				for (Wall w : games.infiltrator2000.World.getWalls()){
+				for (Wall w : world.getWalls()){
 					if(w.contains(newPoint[0],newPoint[1])) {
 						stop = true;
 					}
@@ -244,7 +247,7 @@ public class Guard extends Character {
 		D.add(current, d(gx0,gy0,gxf,gyf)); //D(x) = F(x)+L(x)
 		S.add(current);
 
-		ArrayList<Wall> walls = World.getWalls();
+		ArrayList<Wall> walls = world.getWalls();
 
 		// Now, we begin the pathfinding :
 		float minD;
